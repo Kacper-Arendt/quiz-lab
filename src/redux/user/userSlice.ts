@@ -11,7 +11,6 @@ export const UserSlice = ({
             },
             prepare: (email: string, password: string, name: string) => ({
                 payload: {
-                    id: nanoid(),
                     email: email,
                     password: password,
                     name: name
