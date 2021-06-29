@@ -2,23 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c419752d-4bae-4533-91b9-363584286fdd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UI/Input.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/User/Register.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/User.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/user/userSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UI/Button.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Register.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
   <component name="ProjectId" id="1uaCX8wmwyI2uGOLMN9WwkUIgo8" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -61,7 +61,7 @@
       <workItem from="1624907163448" duration="1399000" />
       <workItem from="1624908596684" duration="1733000" />
       <workItem from="1624942720989" duration="1356000" />
-      <workItem from="1624945178567" duration="2071000" />
+      <workItem from="1624945178567" duration="7107000" />
     </task>
     <servers />
   </component>
