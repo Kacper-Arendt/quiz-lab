@@ -1,20 +1,19 @@
 import React, {useState} from 'react';
-import styled from "styled-components";
 import {IUser} from '../../models/User';
 
-import {auth, generateUserDocument, getUserDocument, signInWithGoogle} from '../firebase';
+import {auth, getUserDocument, signInWithGoogle} from '../firebase';
 import {Button} from '../UI/Button';
 import {Input} from '../UI/Input';
 import {Form} from '../UI/Form';
+import {useAppDispatch} from '../../redux/hooks';
+import {login} from '../../redux/user/userSlice';
 
-export const UserLogin = () => {
-    const [user, setUser] = useState({
-        email: '',
-        password: ''
-    });
+export const UserLogin = (): JSX.Element => {
+    const dispatch = useAppDispatch();
+    const [user, setUser] = useState({email: '', password: ''});
     const [error, setError] = useState('');
 
-    const updateField = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updateField = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setUser({
             ...user,
             [e.target.name]: e.target.value
@@ -24,13 +23,14 @@ export const UserLogin = () => {
     const signInWithEmailAndPasswordHandler = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         try {
-            const login = await auth.signInWithEmailAndPassword(user.email, user.password);
-            if (login.user) {
-                const userId = login.user.uid;
-                const getUserData = await getUserDocument(userId);
-                console.log(getUserData);
+            const userLogin = await auth.signInWithEmailAndPassword(user.email, user.password);
+            if (userLogin.user) {
+                const userId = userLogin.user.uid;
+                const response = await getUserDocument(userId);
+                dispatch(login(response as IUser));
             }
-        } catch (error) {
+        } catch
+            (error) {
             setError(error.message)
         }
     };

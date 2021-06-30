@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {auth, generateUserDocument, signInWithGoogle} from '../firebase';
 
-import {IUser} from '../../models/User';
+import {INewUser} from '../../models/User';
 import {Button} from '../UI/Button';
 import {Form} from '../UI/Form';
 import {Input} from '../UI/Input';
 
-export const Register = () => {
-    const [user, setUser] = useState<IUser>({
+export const Register = (): JSX.Element => {
+    const [user, setUser] = useState<INewUser>({
         id: '',
         email: '',
         password: '',
@@ -15,7 +15,7 @@ export const Register = () => {
     });
     const [errorMessage, setErrorMessage] = useState<string>()
 
-    const updateField = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updateField = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setUser({
             ...user,
             [e.target.name]: e.target.value
@@ -33,7 +33,7 @@ export const Register = () => {
                         ...user,
                         id: id,
                     })
-                    const response = await generateUserDocument(user, id);
+                    await generateUserDocument(user, id);
                 }
             } catch (error) {
                 setErrorMessage(error.message)

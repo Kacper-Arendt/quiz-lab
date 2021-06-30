@@ -1,25 +1,22 @@
-import {createSlice, nanoid, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+
 import {IUser} from "../../models/User";
 
-export const UserSlice = ({
+const initialState = {id: '', name: '', email: ''} as IUser;
+
+export const UserSlice = createSlice({
     name: 'user',
-    initialState: {} as IUser,
+    initialState,
     reducers: {
-        addUser: {
-            reducer: (state: IUser, action: PayloadAction<IUser>) => {
-                state = action.payload
-            },
-            prepare: (email: string, password: string, name: string) => ({
-                payload: {
-                    email: email,
-                    password: password,
-                    name: name
-                } as IUser
-            })
+        login(state:IUser, action: PayloadAction<IUser>) {
+            return action.payload;
         },
+        logout(state: IUser) {
+            return initialState;
+        }
     },
 });
 
-export const {addUser} = UserSlice.reducers;
+export const {login, logout} = UserSlice.actions;
 
-export default UserSlice.reducers;
+export default UserSlice.reducer;

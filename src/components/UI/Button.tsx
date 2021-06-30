@@ -2,10 +2,12 @@ import React from 'react';
 import styled from "styled-components";
 
 interface IProps {
-    value?: string
-    size?: string
-    backgroundColor?: string
+    value?: string,
+    size?: string,
+    backgroundColor?: string,
+    onClick?: () => void,
 }
+
 
 const ButtonEl = styled.button<IProps>`
   border: .2rem solid black;
@@ -21,6 +23,7 @@ export const Button = (props: IProps) => {
     return (
         <ButtonEl
             size={props.size}
+            onClick={props.onClick}
         >
             {props.value}
         </ButtonEl>

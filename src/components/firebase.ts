@@ -30,6 +30,7 @@ export const generateUserDocument = async (user: IUser, id: string) => {
         const {email, name} = user;
         try {
             await userRef.set({
+                id,
                 email,
                 name,
             });
@@ -37,18 +38,14 @@ export const generateUserDocument = async (user: IUser, id: string) => {
             console.error("Error creating user document", error);
         }
     }
-    return getUserDocument(id);
 };
 
 
 export const getUserDocument = async (id: string) => {
-    if (!id) return null;
     try {
         const userDocument = await firestore.doc(`users/${id}`).get();
-        return {
-            id,
-            ...userDocument.data()
-        };
+        const response = userDocument.data();
+        return response as IUser;
     } catch (error) {
         console.error("Error fetching user", error);
     }
