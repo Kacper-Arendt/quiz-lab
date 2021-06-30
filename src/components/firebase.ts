@@ -40,7 +40,8 @@ export const generateUserDocument = async (user: IUser, id: string) => {
     return getUserDocument(id);
 };
 
-const getUserDocument = async (id: string) => {
+
+export const getUserDocument = async (id: string) => {
     if (!id) return null;
     try {
         const userDocument = await firestore.doc(`users/${id}`).get();

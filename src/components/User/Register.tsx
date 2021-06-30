@@ -1,23 +1,10 @@
 import React, {useState} from 'react';
-import styled from "styled-components";
-import {IUser} from '../../models/User';
 import {auth, generateUserDocument, signInWithGoogle} from '../firebase';
+
+import {IUser} from '../../models/User';
 import {Button} from '../UI/Button';
-
+import {Form} from '../UI/Form';
 import {Input} from '../UI/Input';
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 25rem;
-  margin: 5rem auto;
-  padding: 2.5rem;
-  border: .2rem solid black;
-  border-radius: 2rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-`
 
 export const Register = () => {
     const [user, setUser] = useState<IUser>({
@@ -39,18 +26,15 @@ export const Register = () => {
         async (e: React.SyntheticEvent) => {
             e.preventDefault();
             try {
-                await auth.createUserWithEmailAndPassword(user.email, user.password)
-                    .then(function (data) {
-                        if (data.user!.uid) {
-                            const id = data.user!.uid;
-                            setUser({
-                                ...user,
-                                id: id,
-                            })
-                            generateUserDocument(user, data.user!.uid);
-                            console.log(data)
-                        }
+                const createUser = await auth.createUserWithEmailAndPassword(user.email, user.password);
+                if (createUser.user) {
+                    const id = createUser.user.uid;
+                    setUser({
+                        ...user,
+                        id: id,
                     })
+                    const response = await generateUserDocument(user, id);
+                }
             } catch (error) {
                 setErrorMessage(error.message)
             }

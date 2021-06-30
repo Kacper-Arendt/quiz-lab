@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c419752d-4bae-4533-91b9-363584286fdd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/UI/Form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/User/UserLogin.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/User/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Register.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/userSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/userSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/firebase.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +37,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../weather-state" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -70,7 +71,8 @@
       <workItem from="1624907163448" duration="1399000" />
       <workItem from="1624908596684" duration="1733000" />
       <workItem from="1624942720989" duration="1356000" />
-      <workItem from="1624945178567" duration="19676000" />
+      <workItem from="1624945178567" duration="23281000" />
+      <workItem from="1625027378699" duration="4027000" />
     </task>
     <servers />
   </component>
