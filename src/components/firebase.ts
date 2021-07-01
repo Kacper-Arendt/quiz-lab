@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-import {IUser} from "../models/User";
+import { IUser} from "../models/User";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA5a5WuH6_DH2-7ZVYDh8twPp-LH4KwK5g",
@@ -39,7 +39,6 @@ export const generateUserDocument = async (user: IUser, id: string) => {
         }
     }
 };
-
 
 export const getUserDocument = async (id: string) => {
     try {

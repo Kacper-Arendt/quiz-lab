@@ -1,20 +1,20 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {Button} from '../UI/Button';
 import {logout} from '../../redux/user/userSlice';
-
+import { useHistory } from 'react-router';
+import { auth } from '../firebase';
 
 export const UserProfile = () => {
     const {user} = useAppSelector(state => state);
     const dispatch = useAppDispatch();
+    const history = useHistory();
 
-    useEffect(() => {
-
-    }, [user])
-
-    const logoutHandler = (): void => {
+    const logoutHandler = async () => {
+        await auth.signOut();
         dispatch(logout());
+        history.push('/login')
     }
 
     return (

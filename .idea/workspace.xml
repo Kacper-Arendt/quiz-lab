@@ -3,14 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="c419752d-4bae-4533-91b9-363584286fdd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UI/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Button.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/User/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/Register.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/User/UserLogin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/UserLogin.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/User/UserProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User/UserProfile.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/firebase.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/User.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/appSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/appSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/user/userSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/userSlice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +74,9 @@
       <workItem from="1624908596684" duration="1733000" />
       <workItem from="1624942720989" duration="1356000" />
       <workItem from="1624945178567" duration="23281000" />
-      <workItem from="1625027378699" duration="13150000" />
+      <workItem from="1625027378699" duration="18816000" />
+      <workItem from="1625115184617" duration="19748000" />
+      <workItem from="1625150409349" duration="4665000" />
     </task>
     <servers />
   </component>

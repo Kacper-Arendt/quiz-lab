@@ -8,12 +8,12 @@ export const appSlice = createSlice({
     name: 'app,',
     initialState,
     reducers: {
-        changeStatus: (state, action: PayloadAction<Status>) => {
+        changeStatus(state, action: PayloadAction<Status>) {
             state.status = action.payload;
         },
-        setMessage: (state, action: PayloadAction<string>) => {
+        setMessage(state, action: PayloadAction<string>) {
             state.message = action.payload;
-        }
+        },
     }
 })
 

@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import {auth, generateUserDocument, signInWithGoogle} from '../firebase';
+import {auth, generateUserDocument} from '../firebase';
+import {Link} from 'react-router-dom';
 
 import {INewUser} from '../../models/User';
 import {Button} from '../UI/Button';
 import {Form} from '../UI/Form';
 import {Input} from '../UI/Input';
+import { RedirectIfUserIsAuth } from './Helpers';
 
 export const Register = (): JSX.Element => {
     const [user, setUser] = useState<INewUser>({
@@ -13,7 +15,7 @@ export const Register = (): JSX.Element => {
         password: '',
         name: ''
     });
-    const [errorMessage, setErrorMessage] = useState<string>()
+    const [errorMessage, setErrorMessage] = useState<string>();
 
     const updateField = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setUser({
@@ -48,6 +50,7 @@ export const Register = (): JSX.Element => {
 
     return (
         <>
+            {RedirectIfUserIsAuth('/user')}
             <Form onSubmit={createUserWithEmailAndPasswordHandler}>
                 <h1>Register</h1>
                 {errorMessage ? errorMessage : null}
@@ -74,7 +77,7 @@ export const Register = (): JSX.Element => {
                     value='Submit'
                     size='1.5rem'
                 />
-                <button onClick={signInWithGoogle}>Sing with google</button>
+                <Link to="/login">Already have an account?</Link>
             </Form>
         </>
     )
