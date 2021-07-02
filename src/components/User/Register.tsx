@@ -7,8 +7,14 @@ import {Button} from '../UI/Button';
 import {Form} from '../UI/Form';
 import {Input} from '../UI/Input';
 import {RedirectIfUserIsAuth} from './Helpers';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
+import {Status} from '../../models/app';
+import {changeStatus} from '../../redux/appSlice';
+import {Spinner} from '../UI/Spinner';
 
 export const Register = (): JSX.Element => {
+    const dispatch = useAppDispatch();
+    const {app} = useAppSelector(state => state);
     const history = useHistory();
     const [user, setUser] = useState<INewUser>({
         id: '',
@@ -17,6 +23,7 @@ export const Register = (): JSX.Element => {
         name: ''
     });
     const [errorMessage, setErrorMessage] = useState<string>();
+
     const updateField = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setUser({
             ...user,
@@ -27,6 +34,7 @@ export const Register = (): JSX.Element => {
     const createUserWithEmailAndPasswordHandler =
         async (e: React.SyntheticEvent) => {
             e.preventDefault();
+            dispatch(changeStatus(Status.Loading))
             try {
                 const createUser = await auth.createUserWithEmailAndPassword(user.email, user.password);
                 if (createUser.user) {
@@ -39,8 +47,10 @@ export const Register = (): JSX.Element => {
                     history.push('/login');
                 }
             } catch (error) {
+                dispatch(changeStatus(Status.Idle))
                 setErrorMessage(error.message);
             }
+            dispatch(changeStatus(Status.Idle))
             setUser({
                 id: '',
                 email: '',
@@ -74,10 +84,14 @@ export const Register = (): JSX.Element => {
                 onChange={updateField}
                 placeholder='Name'
             />
-                <Button
-                    value='Submit'
-                    size='1.5rem'
-                />
+                {app.status === Status.Loading ?
+                    <Spinner/>
+                    :
+                    <Button
+                        value='Submit'
+                        size='1.5rem'
+                    />
+                }
                 <Link to="/login">Already have an account?</Link>
             </Form>
         </>

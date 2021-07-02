@@ -1,5 +1,6 @@
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import React, {useEffect, useState} from 'react';
+import {createGlobalStyle} from 'styled-components'
 
 import {Register} from './components/User/Register';
 import {UserLogin} from './components/User/UserLogin';
@@ -8,6 +9,27 @@ import {useAppDispatch} from './redux/hooks';
 import {auth, getUserDocument} from "./components/firebase";
 import {login} from "./redux/user/userSlice";
 import {IUser} from "./models/User";
+
+const GlobalStyles = createGlobalStyle`
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 62.5%;
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    font-family: sans-serif;
+    box-sizing: border-box;
+  }
+`
 
 function App() {
     const dispatch = useAppDispatch();
@@ -45,6 +67,7 @@ function App() {
 
     return (
         <>
+            <GlobalStyles/>
             <Router>
                 <Switch>
                     <Route path='/user' component={UserProfile}/>
