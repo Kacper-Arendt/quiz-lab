@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
-import styled from 'styled-components';
 
 import {IUser} from '../../models/User';
 import {auth, getUserDocument} from '../firebase';

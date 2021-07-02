@@ -67,7 +67,7 @@ function App() {
 
     return (
         <>
-            <GlobalStyles />
+            <GlobalStyles/>
             <Router>
                 <Switch>
                     <Route path='/user' component={UserProfile}/>
