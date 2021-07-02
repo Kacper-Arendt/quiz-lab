@@ -5,5 +5,5 @@ export interface IApp {
 
 export enum Status {
     Idle = 'IDLE',
-    Fetching = 'FETCHING',
+    Loading = 'LOADING',
 }

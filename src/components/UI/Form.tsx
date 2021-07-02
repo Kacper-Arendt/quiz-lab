@@ -11,7 +11,7 @@ const FormEl = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 25rem;
+  width: 30rem;
   margin: 5rem auto;
   padding: 2.5rem;
   border: .2rem solid black;

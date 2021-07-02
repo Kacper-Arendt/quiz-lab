@@ -13,7 +13,7 @@ const ButtonEl = styled.button<IProps>`
   border: .2rem solid black;
   border-radius: 2rem;
   padding: .5rem .7rem;
-  margin: .5rem;
+  margin: .8rem;
   color: white;
   font-size: ${(props: IProps) => props.size ? props.size : 'inherit'};
   background-color: ${(props) => props.backgroundColor ? props.backgroundColor : 'green'};
