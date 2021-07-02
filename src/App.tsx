@@ -5,8 +5,7 @@ import {Register} from './components/User/Register';
 import {UserLogin} from './components/User/UserLogin';
 import {UserProfile} from './components/User/UserProfile';
 import {useAppDispatch} from './redux/hooks';
-import {getUserDocument} from "./components/firebase";
-import firebase from "firebase";
+import {auth, getUserDocument} from "./components/firebase";
 import {login} from "./redux/user/userSlice";
 import {IUser} from "./models/User";
 
@@ -19,8 +18,17 @@ function App() {
         isAuth: false,
     });
 
+    useEffect(() => {
+        onAuthStateChange();
+    }, []);
+
+    useEffect(() => {
+        dispatch(login(fetchedUser as IUser));
+    }, [fetchedUser, dispatch]);
+
+
     const onAuthStateChange = () => {
-        return firebase.auth().onAuthStateChanged(async user => {
+        return auth.onAuthStateChanged(async user => {
             if (user) {
                 const response = await getUserDocument(user.uid);
                 if (response) {
@@ -29,19 +37,11 @@ function App() {
                         email: response.email,
                         name: response.name,
                         isAuth: true,
-                    })
+                    });
                 }
             }
         });
-    }
-
-    useEffect(() => {
-        onAuthStateChange()
-    }, []);
-
-    useEffect(() => {
-        dispatch(login(fetchedUser as IUser))
-    }, [fetchedUser])
+    };
 
     return (
         <>

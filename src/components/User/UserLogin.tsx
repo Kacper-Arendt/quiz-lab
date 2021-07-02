@@ -23,7 +23,7 @@ export const UserLogin = (): JSX.Element => {
 
     useEffect(() => {
         dispatch(login(fetchedUser as IUser));
-    }, [fetchedUser])
+    }, [fetchedUser, dispatch])
 
     const updateField = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setFormData({

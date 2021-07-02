@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import {auth, generateUserDocument} from '../firebase';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 import {INewUser} from '../../models/User';
 import {Button} from '../UI/Button';
 import {Form} from '../UI/Form';
 import {Input} from '../UI/Input';
-import { RedirectIfUserIsAuth } from './Helpers';
+import {RedirectIfUserIsAuth} from './Helpers';
 
 export const Register = (): JSX.Element => {
+    const history = useHistory();
     const [user, setUser] = useState<INewUser>({
         id: '',
         email: '',
@@ -16,7 +17,6 @@ export const Register = (): JSX.Element => {
         name: ''
     });
     const [errorMessage, setErrorMessage] = useState<string>();
-
     const updateField = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setUser({
             ...user,
@@ -36,9 +36,10 @@ export const Register = (): JSX.Element => {
                         id: id,
                     })
                     await generateUserDocument(user, id);
+                    history.push('/login');
                 }
             } catch (error) {
-                setErrorMessage(error.message)
+                setErrorMessage(error.message);
             }
             setUser({
                 id: '',
