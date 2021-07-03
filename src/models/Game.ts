@@ -9,3 +9,9 @@ interface Answer {
     id: number,
     answer: string
 }
+
+export interface IGame {
+    questionIDs: Array<number>,
+    currentQuestion: number,
+    question?: Array<Question>,
+}
