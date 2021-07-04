@@ -4,6 +4,9 @@
     <list default="true" id="c419752d-4bae-4533-91b9-363584286fdd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Game/Game.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/Game.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Game/QuestionData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/QuestionData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Game.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Game.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/game/gameSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/game/gameSlice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +82,7 @@
       <workItem from="1625115184617" duration="19748000" />
       <workItem from="1625150409349" duration="4943000" />
       <workItem from="1625197792415" duration="1501000" />
+      <workItem from="1625401344926" duration="5752000" />
     </task>
     <servers />
   </component>

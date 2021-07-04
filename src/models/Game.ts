@@ -11,7 +11,8 @@ interface Answer {
 }
 
 export interface IGame {
-    questionIDs: Array<number>,
+    questionRandomIds: number[],
     currentQuestion: number,
-    question?: Array<Question>,
+    questions: Array<Question>,
+    score: number,
 }

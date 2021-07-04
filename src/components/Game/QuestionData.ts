@@ -1,8 +1,8 @@
-import { Question } from "../../models/Game";
+import {Question} from "../../models/Game";
 
-export const data: Array<Question> = [
+export const questions: Array<Question> = [
     {
-        id: 1,
+        id: 0,
         question: 'Kacper jes...',
         answers: [
             {id: 1, answer: 'Boski'},
@@ -12,7 +12,7 @@ export const data: Array<Question> = [
         correctAnswer: 1
     },
     {
-        id: 2,
+        id: 1,
         question: 'Kacper potrafi...',
         answers: [
             {id: 1, answer: 'Nic'},
@@ -22,7 +22,7 @@ export const data: Array<Question> = [
         correctAnswer: 2
     },
     {
-        id: 3,
+        id: 2,
         question: 'Kacper lubi',
         answers: [
             {id: 1, answer: 'ocet'},
@@ -31,7 +31,7 @@ export const data: Array<Question> = [
         correctAnswer: 3
     },
     {
-        id: 4,
+        id: 3,
         question: 'Kacper jeździ na ',
         answers: [
             {id: 1, answer: 'Strusiu'},
@@ -41,7 +41,7 @@ export const data: Array<Question> = [
         correctAnswer: 2
     },
     {
-        id: 5,
+        id: 4,
         question: 'Kacper dobrze',
         answers: [
             {id: 1, answer: 'Gotuje'},
