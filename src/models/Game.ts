@@ -2,12 +2,13 @@ export interface Question {
     id: number,
     question: string,
     answers: Array<Answer>,
-    correctAnswer: number
+    correctAnswer: number,
+    chosenAnswer: number | null,
 }
 
-interface Answer {
+export interface Answer {
     id: number,
-    answer: string
+    answer: string,
 }
 
 export interface IGame {

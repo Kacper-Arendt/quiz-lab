@@ -1,25 +1,35 @@
 import React, {useEffect, useState} from 'react';
-import {startGame, updateCurrentQuestion, updateScore} from '../../redux/game/gameSlice';
+import {setChosenAnswer, startGame, updateCurrentQuestion, updateScore} from '../../redux/game/gameSlice';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {Button} from '../UI/Button';
 import {Form} from '../UI/Form';
 import {questions} from './QuestionData';
 import styled from 'styled-components';
+import {Answer, Question} from '../../models/Game';
 
 const Div = styled.data`
   font-size: 2rem;
 
   h2 {
-    margin: 2rem 0;
+    margin: 2rem;
   }
+`
 
-  p {
-    border: 1px solid orange;
-    border-radius: 2rem;
-    text-align: center;
-    margin: 2rem 0;
-    cursor: pointer;
-  }
+interface IProps {
+    isChosen: boolean;
+    correctAnswer: boolean;
+}
+
+const P = styled.p<IProps>`
+  padding: 1rem .4rem;
+  border: 1px solid orange;
+  border-radius: 2rem;
+  text-align: center;
+  margin: 2rem 0;
+  cursor: pointer;
+  background-color: ${(props) => props.isChosen && '#00F275'};
+  background-color: ${(props) => props.correctAnswer && '#00A651'};
+  border: ${(props) => props.correctAnswer ? '2px solid #008C44' : '1px solid orange'};
 `
 
 export const Game = () => {
@@ -27,7 +37,7 @@ export const Game = () => {
     const {game} = useAppSelector(state => state);
     const questionRandomIds: Array<number> = [];
     const [answeredQuestion, setAnsweredQuestion] = useState<number>();
-    const [score, setScore] = useState<number>(0);
+    const [correctAnswer, setCorrectAnswer] = useState<number | null>(null);
 
     useEffect(() => {
         getRandomIds();
@@ -54,30 +64,34 @@ export const Game = () => {
         }
     };
 
-    const setAnsweredQuestionHandler = (id: number): void => {
+    const answeredQuestionHandler = (id: number): void => {
         setAnsweredQuestion(id);
+        dispatch(setChosenAnswer(id))
     };
 
     const questionHandler = () => {
         if (game.currentQuestion <= 4) {
             if (game.questions) {
-                const currentQuestion = game.questionRandomIds[game.currentQuestion];
-                const selectedAnswerId = game.questions[currentQuestion].answers;
+                const currentQuestion: number = game.questionRandomIds[game.currentQuestion];
+                const selectedAnswerId: Answer[] = game.questions[currentQuestion].answers;
+                const chosenAnswer = game.questions[currentQuestion].chosenAnswer;
+
                 return (
                     <Div>
                         <h2>{game.questions[currentQuestion].question}</h2>
-                        <p onClick={() => setAnsweredQuestionHandler(selectedAnswerId[0].id)}>
-                            {game.questions[currentQuestion].answers[0].answer}
-                        </p>
-                        <p onClick={() => setAnsweredQuestionHandler(selectedAnswerId[1].id)}>
-                            {game.questions[currentQuestion].answers[1].answer}
-                        </p>
-                        <p onClick={() => setAnsweredQuestionHandler(selectedAnswerId[2].id)}>
-                            {game.questions[currentQuestion].answers[2].answer}
-                        </p>
+                        {selectedAnswerId.map(el => {
+                            return <P
+                                key={el.id}
+                                isChosen={el.id === chosenAnswer}
+                                correctAnswer={el.id === correctAnswer}
+                                onClick={() => answeredQuestionHandler(selectedAnswerId[el.id].id)}>
+                                {game.questions[currentQuestion].answers[el.id].answer}
+                            </P>
+                        })}
                     </Div>
                 )
-            } else {
+            }
+            {
                 return (<h1>Loading</h1>)
             }
         } else {
@@ -92,12 +106,18 @@ export const Game = () => {
 
     const submitAnswerHandler = (e: React.SyntheticEvent): void => {
         e.preventDefault();
-        const currentQuestion = game.questionRandomIds[game.currentQuestion];
+        const currentQuestion: number = game.questionRandomIds[game.currentQuestion];
         if (answeredQuestion == game.questions[currentQuestion].correctAnswer) {
             dispatch(updateScore());
         }
-        dispatch(updateCurrentQuestion())
-    };
+        setCorrectAnswer(game.questions[currentQuestion].correctAnswer);
+
+        const nextQuestion = () => {
+            dispatch(updateCurrentQuestion());
+            setCorrectAnswer(null);
+        }
+        setTimeout(nextQuestion, 1000);
+    }
 
     return (
         <>

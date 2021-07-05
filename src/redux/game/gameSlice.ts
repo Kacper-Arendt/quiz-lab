@@ -26,11 +26,15 @@ export const GameSlice = createSlice({
         },
         updateScore(state) {
             state.score = state.score + 1
+        },
+        setChosenAnswer(state, action: PayloadAction<number>) {
+            const currentQuestion: number = state.questionRandomIds[state.currentQuestion];
+            state.questions[currentQuestion].chosenAnswer = action.payload;
         }
     }
 });
 
-export const {startGame, updateCurrentQuestion, updateScore} = GameSlice.actions;
+export const {startGame, updateCurrentQuestion, updateScore, setChosenAnswer} = GameSlice.actions;
 
 export default GameSlice.reducer;
 

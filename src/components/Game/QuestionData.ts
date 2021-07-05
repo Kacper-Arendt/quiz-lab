@@ -5,49 +5,55 @@ export const questions: Array<Question> = [
         id: 0,
         question: 'Kacper jes...',
         answers: [
-            {id: 1, answer: 'Boski'},
-            {id: 2, answer: 'Czarny'},
-            {id: 3, answer: 'Wysoki'},
+            {id: 0, answer: 'Boski'},
+            {id: 1, answer: 'Czarny'},
+            {id: 2, answer: 'Wysoki'},
         ],
-        correctAnswer: 1
+        correctAnswer: 0,
+        chosenAnswer: null,
     },
     {
         id: 1,
         question: 'Kacper potrafi...',
         answers: [
-            {id: 1, answer: 'Nic'},
-            {id: 2, answer: 'Wszystko'},
-            {id: 3, answer: 'Udawać'},
+            {id: 0, answer: 'Nic'},
+            {id: 1, answer: 'Wszystko'},
+            {id: 2, answer: 'Udawać'},
         ],
-        correctAnswer: 2
+        correctAnswer: 1,
+        chosenAnswer: null,
     },
     {
         id: 2,
         question: 'Kacper lubi',
         answers: [
-            {id: 1, answer: 'ocet'},
-            {id: 2, answer: 'piwo'},
-            {id: 3, answer: 'lecha shandy'},],
-        correctAnswer: 3
+            {id: 0, answer: 'ocet'},
+            {id: 1, answer: 'piwo'},
+            {id: 2, answer: 'lecha shandy'},
+        ],
+        correctAnswer: 2,
+        chosenAnswer: null,
     },
     {
         id: 3,
         question: 'Kacper jeździ na ',
         answers: [
-            {id: 1, answer: 'Strusiu'},
-            {id: 2, answer: 'Rowerze'},
-            {id: 3, answer: 'z buta chodzi'},
+            {id: 0, answer: 'Strusiu'},
+            {id: 1, answer: 'Rowerze'},
+            {id: 2, answer: 'z buta chodzi'},
         ],
-        correctAnswer: 2
+        correctAnswer: 1,
+        chosenAnswer: null,
     },
     {
         id: 4,
         question: 'Kacper dobrze',
         answers: [
-            {id: 1, answer: 'Gotuje'},
-            {id: 2, answer: 'Kłamie'},
-            {id: 3, answer: 'Biega'},
+            {id: 0, answer: 'Gotuje'},
+            {id: 1, answer: 'Kłamie'},
+            {id: 2, answer: 'Biega'},
         ],
-        correctAnswer: 1
-    }
+        correctAnswer: 0,
+        chosenAnswer: null,
+    },
 ]
