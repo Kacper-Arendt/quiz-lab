@@ -49,7 +49,6 @@ function App() {
         dispatch(login(fetchedUser as IUser));
     }, [fetchedUser, dispatch]);
 
-
     const onAuthStateChange = () => {
         return auth.onAuthStateChanged(async user => {
             if (user) {
@@ -74,6 +73,7 @@ function App() {
                     <Route path='/user' component={UserProfile}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/login" component={UserLogin}/>
+                    <Route path="/question/add" component={UserLogin}/>
                     <Route path='/' component={Game}/>
                 </Switch>
             </Router>

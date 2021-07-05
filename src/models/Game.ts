@@ -16,4 +16,5 @@ export interface IGame {
     currentQuestion: number,
     questions: Array<Question>,
     score: number,
+    chosenAnswer?: number | null,
 }
