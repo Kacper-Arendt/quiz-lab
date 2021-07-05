@@ -1,12 +1,17 @@
 import React, {useEffect, useState} from 'react';
+import styled from 'styled-components';
+
 import {setChosenAnswer, startGame, updateCurrentQuestion, updateScore} from '../../redux/game/gameSlice';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {Button} from '../UI/Button';
 import {Form} from '../UI/Form';
 import {questions} from './QuestionData';
-import styled from 'styled-components';
-import {Answer, Question} from '../../models/Game';
+import {Answer} from '../../models/Game';
 
+interface IProps {
+    isChosen: boolean;
+    correctAnswer: boolean;
+}
 const Div = styled.data`
   font-size: 2rem;
 
@@ -15,14 +20,8 @@ const Div = styled.data`
   }
 `
 
-interface IProps {
-    isChosen: boolean;
-    correctAnswer: boolean;
-}
-
 const P = styled.p<IProps>`
   padding: 1rem .4rem;
-  border: 1px solid orange;
   border-radius: 2rem;
   text-align: center;
   margin: 2rem 0;
@@ -69,6 +68,21 @@ export const Game = () => {
         dispatch(setChosenAnswer(id))
     };
 
+    const submitAnswerHandler = (e: React.SyntheticEvent): void => {
+        e.preventDefault();
+        const currentQuestion: number = game.questionRandomIds[game.currentQuestion];
+        if (answeredQuestion == game.questions[currentQuestion].correctAnswer) {
+            dispatch(updateScore());
+        }
+        setCorrectAnswer(game.questions[currentQuestion].correctAnswer);
+
+        const nextQuestion = () => {
+            dispatch(updateCurrentQuestion());
+            setCorrectAnswer(null);
+        }
+        setTimeout(nextQuestion, 800);
+    };
+
     const questionHandler = () => {
         if (game.currentQuestion <= 4) {
             if (game.questions) {
@@ -77,18 +91,21 @@ export const Game = () => {
                 const chosenAnswer = game.questions[currentQuestion].chosenAnswer;
 
                 return (
-                    <Div>
-                        <h2>{game.questions[currentQuestion].question}</h2>
-                        {selectedAnswerId.map(el => {
-                            return <P
-                                key={el.id}
-                                isChosen={el.id === chosenAnswer}
-                                correctAnswer={el.id === correctAnswer}
-                                onClick={() => answeredQuestionHandler(selectedAnswerId[el.id].id)}>
-                                {game.questions[currentQuestion].answers[el.id].answer}
-                            </P>
-                        })}
-                    </Div>
+                    <>
+                        <Div>
+                            <h2>{game.questions[currentQuestion].question}</h2>
+                            {selectedAnswerId.map(el => {
+                                return <P
+                                    key={el.id}
+                                    isChosen={el.id === chosenAnswer}
+                                    correctAnswer={el.id === correctAnswer}
+                                    onClick={() => answeredQuestionHandler(selectedAnswerId[el.id].id)}>
+                                    {game.questions[currentQuestion].answers[el.id].answer}
+                                </P>
+                            })}
+                        </Div>
+                        <Button value='Submit' size='1.5rem'/>
+                    </>
                 )
             }
             {
@@ -104,29 +121,12 @@ export const Game = () => {
         }
     };
 
-    const submitAnswerHandler = (e: React.SyntheticEvent): void => {
-        e.preventDefault();
-        const currentQuestion: number = game.questionRandomIds[game.currentQuestion];
-        if (answeredQuestion == game.questions[currentQuestion].correctAnswer) {
-            dispatch(updateScore());
-        }
-        setCorrectAnswer(game.questions[currentQuestion].correctAnswer);
-
-        const nextQuestion = () => {
-            dispatch(updateCurrentQuestion());
-            setCorrectAnswer(null);
-        }
-        setTimeout(nextQuestion, 1000);
-    }
 
     return (
         <>
             <Form onSubmit={submitAnswerHandler}>
                 {questionHandler()}
-                <Button
-                    value='Submit'
-                    size='1.5rem'
-                />
+
             </Form>
         </>
     )

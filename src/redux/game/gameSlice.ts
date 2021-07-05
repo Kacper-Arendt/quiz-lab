@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {Question, IGame} from "../../models/Game";
+import {IGame} from "../../models/Game";
 
 const initialState = {} as IGame;
 
@@ -21,13 +21,13 @@ export const GameSlice = createSlice({
                 } as IGame
             })
         },
-        updateCurrentQuestion(state) {
+        updateCurrentQuestion(state): void {
             state.currentQuestion = state.currentQuestion! + 1
         },
-        updateScore(state) {
+        updateScore(state): void {
             state.score = state.score + 1
         },
-        setChosenAnswer(state, action: PayloadAction<number>) {
+        setChosenAnswer(state, action: PayloadAction<number>): void {
             const currentQuestion: number = state.questionRandomIds[state.currentQuestion];
             state.questions[currentQuestion].chosenAnswer = action.payload;
         }
