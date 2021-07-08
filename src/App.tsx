@@ -9,7 +9,8 @@ import {useAppDispatch} from './redux/hooks';
 import {auth, getUserDocument} from "./components/firebase";
 import {login} from "./redux/user/userSlice";
 import {IUser} from "./models/User";
-import { Game } from "./components/Game/Game";
+import {Game} from "./components/Game/Game";
+import {AddQuestion} from "./components/AddQuestion/AddQuestion";
 
 const GlobalStyles = createGlobalStyle`
   *,
@@ -73,7 +74,7 @@ function App() {
                     <Route path='/user' component={UserProfile}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/login" component={UserLogin}/>
-                    <Route path="/question/add" component={UserLogin}/>
+                    <Route exact path="/question/add" component={AddQuestion}/>
                     <Route path='/' component={Game}/>
                 </Switch>
             </Router>

@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-import { IUser} from "../models/User";
+import {IUser} from "../models/User";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA5a5WuH6_DH2-7ZVYDh8twPp-LH4KwK5g",
@@ -21,6 +21,12 @@ const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => {
     auth.signInWithRedirect(provider);
 };
+
+const checkIfIdExists = (dbName: string): string => {
+    const ref = firestore.collection(dbName).doc();
+    return ref.id;
+}
+
 
 export const generateUserDocument = async (user: IUser, id: string) => {
     if (!id) return;
@@ -47,5 +53,20 @@ export const getUserDocument = async (id: string) => {
         return response as IUser;
     } catch (error) {
         console.error("Error fetching user", error);
+    }
+};
+
+export const generateQuestionDocument = async (questionData: any) => {
+    if (!questionData) return;
+    const id = await checkIfIdExists('users');
+    const userRef = firestore.doc(`users/${id}`);
+        const {question, correctAnswer, answers } = questionData;
+        try {
+            await userRef.set({
+                id,
+                question,
+            });
+        } catch (error) {
+            console.error("Error creating user document", error);
     }
 };
