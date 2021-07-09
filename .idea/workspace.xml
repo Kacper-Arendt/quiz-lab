@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c419752d-4bae-4533-91b9-363584286fdd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_07_2021,_06_59_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_07_2021__06_59__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/AddQuestion/AddQuestion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddQuestion/AddQuestion.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UI/Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Game/Game.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/Game.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/UI/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Input.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/firebase.ts" afterDir="false" />
     </list>
@@ -88,7 +91,10 @@
       <workItem from="1625566967991" duration="974000" />
       <workItem from="1625643019470" duration="11924000" />
       <workItem from="1625668158170" duration="4848000" />
-      <workItem from="1625722511655" duration="3047000" />
+      <workItem from="1625722511655" duration="5723000" />
+      <workItem from="1625813116262" duration="5669000" />
+      <workItem from="1625818837343" duration="1804000" />
+      <workItem from="1625821827377" duration="2097000" />
     </task>
     <servers />
   </component>

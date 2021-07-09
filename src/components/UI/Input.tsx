@@ -9,6 +9,7 @@ interface IProps {
     placeholder?: string,
     backgroundColor?: string,
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 const InputEl = styled.input<IProps>`
@@ -46,6 +47,7 @@ export const Input = (props: IProps) => {
                 name={props.name}
                 value={props.value}
                 onChange={props.onChange}
+                onBlur={props.onChange}
                 placeholder={props.placeholder}
                 backgroundColor={props.backgroundColor}
             />

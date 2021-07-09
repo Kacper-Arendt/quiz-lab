@@ -1,27 +1,49 @@
-import firebase from 'firebase';
-import React, {useEffect, useState} from 'react';
-import {Answer} from '../../models/Game';
+import React, {useState} from 'react';
+import {Status} from '../../models/app';
+import {changeStatus} from '../../redux/appSlice';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
+import {generateQuestionDocument} from '../firebase';
 import {Button} from '../UI/Button';
 import {Form} from '../UI/Form';
 import {Input} from '../UI/Input';
-
+import {Spinner} from '../UI/Spinner';
 
 export const AddQuestion = () => {
+    const dispatch = useAppDispatch();
+    const {app} = useAppSelector(state => state);
     const choices = [{id: 0, value: 'Answer 1'}, {id: 1, value: 'Answer 2'}, {id: 2, value: 'Answer 3'}];
-    const [question, setQuestion] = useState<{ question: string, correctAnswer: number}>();
+    const [question, setQuestion] = useState<{ question: string, correctAnswer: number, answers: Array<object> }>();
+    const [answers, setAnswers] = useState<any[]>([]);
+    const [errorMessage, setErrorMessage] = useState<string>();
 
     const setQuestionHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setQuestion({
             ...question!,
-            [e.target.name]: e.target.value,
+            [e.currentTarget.name]: e.currentTarget.value,
         });
     };
 
+    const addAnswersHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        setAnswers({
+            ...answers,
+            [parseFloat(e.currentTarget.id)]: e.currentTarget.value
+        });
+        setQuestion({
+            ...question!,
+            answers: answers
+        });
+    }
 
-    const onSubmitHandler = (e: React.SyntheticEvent) => {
+    const onSubmitHandler = async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        console.log(question);
-
+        dispatch(changeStatus(Status.Loading))
+        try {
+            await generateQuestionDocument(question);
+        } catch (error) {
+            dispatch(changeStatus(Status.Idle))
+            setErrorMessage(error.message);
+        }
+        dispatch(changeStatus(Status.Idle))
     }
 
     return (
@@ -31,11 +53,11 @@ export const AddQuestion = () => {
                 <Input type='text' name="question" onChange={setQuestionHandler}/>
                 <div>
                     <h2>Answers</h2>
-                    <Input type='text' id='0' key={0} name="0" placeholder='1' onChange={setQuestionHandler}/>
-                    <Input type='text' id='1' key={1} name="1" placeholder='2' onChange={setQuestionHandler}/>
-                    <Input type='text' id='2' key={2} name="2" placeholder='3' onChange={setQuestionHandler}/>
+                    <Input type='text' id='0' key={0} name="0" placeholder='1' onChange={addAnswersHandler}/>
+                    <Input type='text' id='1' key={1} name="1" placeholder='2' onChange={addAnswersHandler}/>
+                    <Input type='text' id='2' key={2} name="2" placeholder='3' onChange={addAnswersHandler}/>
                 </div>
-                <p>Correct Answer is: </p>
+                <h2>Correct Answer: </h2>
                 <div>
                     {choices.map(el => {
                         return (
@@ -52,7 +74,14 @@ export const AddQuestion = () => {
                         )
                     })}
                 </div>
-                <Button value="Add" size="1.5rem"/>
+                {app.status === Status.Loading ?
+                    <Spinner/>
+                    :
+                    <Button
+                        value='Add'
+                        size='1.5rem'
+                    />
+                }
             </Form>
         </>
     )

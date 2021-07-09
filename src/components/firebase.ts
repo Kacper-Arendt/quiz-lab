@@ -27,7 +27,6 @@ const checkIfIdExists = (dbName: string): string => {
     return ref.id;
 }
 
-
 export const generateUserDocument = async (user: IUser, id: string) => {
     if (!id) return;
     const userRef = firestore.doc(`users/${id}`);
@@ -58,15 +57,17 @@ export const getUserDocument = async (id: string) => {
 
 export const generateQuestionDocument = async (questionData: any) => {
     if (!questionData) return;
-    const id = await checkIfIdExists('users');
-    const userRef = firestore.doc(`users/${id}`);
-        const {question, correctAnswer, answers } = questionData;
-        try {
-            await userRef.set({
-                id,
-                question,
-            });
-        } catch (error) {
-            console.error("Error creating user document", error);
+    const id = await checkIfIdExists('questions');
+    const userRef = firestore.doc(`questions/${id}`);
+    const {question, correctAnswer, answers} = questionData;
+    try {
+        await userRef.set({
+            id,
+            question,
+            answers,
+            correctAnswer,
+        });
+    } catch (error) {
+        console.error("Error creating question document", error);
     }
 };
