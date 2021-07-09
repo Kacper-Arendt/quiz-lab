@@ -1,9 +1,6 @@
-export interface IApp {
-    status: Status,
-    message?: string,
-}
+import { AppStatus } from "./Enums";
 
-export enum Status {
-    Idle = 'IDLE',
-    Loading = 'LOADING',
+export interface IApp {
+    status: AppStatus,
+    message?: string,
 }

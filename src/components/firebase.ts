@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-
+import {Firebase as FirebaseEnum} from '../models/Enums'
 import {IUser} from "../models/User";
 
 const firebaseConfig = {
@@ -42,6 +42,14 @@ export const generateUserDocument = async (user: IUser, id: string) => {
         } catch (error) {
             console.error("Error creating user document", error);
         }
+    }
+};
+
+export const getDocuments = async (path: FirebaseEnum) => {
+    try {
+        return await firestore.collection(path).get();
+    } catch (error) {
+        console.error("Error fetching data", error);
     }
 };
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Status} from '../../models/app';
+import { AppStatus } from '../../models/Enums';
 import {changeStatus} from '../../redux/appSlice';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {generateQuestionDocument} from '../firebase';
@@ -36,14 +36,14 @@ export const AddQuestion = () => {
 
     const onSubmitHandler = async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        dispatch(changeStatus(Status.Loading))
+        dispatch(changeStatus(AppStatus.Loading))
         try {
             await generateQuestionDocument(question);
         } catch (error) {
-            dispatch(changeStatus(Status.Idle))
+            dispatch(changeStatus(AppStatus.Idle))
             setErrorMessage(error.message);
         }
-        dispatch(changeStatus(Status.Idle))
+        dispatch(changeStatus(AppStatus.Idle))
     }
 
     return (
@@ -74,7 +74,7 @@ export const AddQuestion = () => {
                         )
                     })}
                 </div>
-                {app.status === Status.Loading ?
+                {app.status === AppStatus.Loading ?
                     <Spinner/>
                     :
                     <Button
