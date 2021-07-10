@@ -10,7 +10,6 @@ export const questions: Array<Question> = [
             {id: 2, answer: 'Wysoki'},
         ],
         correctAnswer: 0,
-        chosenAnswer: null,
     },
     {
         id: 1,
@@ -21,7 +20,6 @@ export const questions: Array<Question> = [
             {id: 2, answer: 'Udawać'},
         ],
         correctAnswer: 1,
-        chosenAnswer: null,
     },
     {
         id: 2,
@@ -32,7 +30,6 @@ export const questions: Array<Question> = [
             {id: 2, answer: 'lecha shandy'},
         ],
         correctAnswer: 2,
-        chosenAnswer: null,
     },
     {
         id: 3,
@@ -43,7 +40,6 @@ export const questions: Array<Question> = [
             {id: 2, answer: 'z buta chodzi'},
         ],
         correctAnswer: 1,
-        chosenAnswer: null,
     },
     {
         id: 4,
@@ -54,6 +50,5 @@ export const questions: Array<Question> = [
             {id: 2, answer: 'Biega'},
         ],
         correctAnswer: 0,
-        chosenAnswer: null,
     },
 ]

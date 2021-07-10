@@ -2,7 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 
 interface IProps {
-    onSubmit: (e: React.SyntheticEvent) => void,
+    onSubmit?: (e: React.SyntheticEvent) => void,
+    onChange?: (e: React.ChangeEvent<any>)=> void,
     children: React.ReactNode
 }
 
@@ -21,7 +22,7 @@ const FormEl = styled.form`
 
 export const Form = (props: IProps) => {
     return (
-        <FormEl onSubmit={props.onSubmit}>
+        <FormEl onSubmit={props.onSubmit} onChange={props.onChange}>
             {props.children}
         </FormEl>
     )

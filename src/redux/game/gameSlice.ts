@@ -22,14 +22,14 @@ export const GameSlice = createSlice({
             })
         },
         updateCurrentQuestion(state): void {
-            state.currentQuestion = state.currentQuestion! + 1
+            state.currentQuestion = state.currentQuestion! + 1;
+            state.chosenAnswer = null;
         },
         updateScore(state): void {
             state.score = state.score + 1
         },
         setChosenAnswer(state, action: PayloadAction<number>): void {
-            const currentQuestion: number = state.questionRandomIds[state.currentQuestion];
-            state.questions[currentQuestion].chosenAnswer = action.payload;
+            state.chosenAnswer = action.payload;
         }
     }
 });

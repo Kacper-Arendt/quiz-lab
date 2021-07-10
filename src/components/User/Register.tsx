@@ -8,9 +8,9 @@ import {Form} from '../UI/Form';
 import {Input} from '../UI/Input';
 import {RedirectIfUserIsAuth} from './Helpers';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
-import {Status} from '../../models/app';
 import {changeStatus} from '../../redux/appSlice';
 import {Spinner} from '../UI/Spinner';
+import { AppStatus } from '../../models/Enums';
 
 export const Register = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -34,7 +34,7 @@ export const Register = (): JSX.Element => {
     const createUserWithEmailAndPasswordHandler =
         async (e: React.SyntheticEvent) => {
             e.preventDefault();
-            dispatch(changeStatus(Status.Loading))
+            dispatch(changeStatus(AppStatus.Loading))
             try {
                 const createUser = await auth.createUserWithEmailAndPassword(user.email, user.password);
                 if (createUser.user) {
@@ -47,10 +47,10 @@ export const Register = (): JSX.Element => {
                     history.push('/login');
                 }
             } catch (error) {
-                dispatch(changeStatus(Status.Idle))
+                dispatch(changeStatus(AppStatus.Idle))
                 setErrorMessage(error.message);
             }
-            dispatch(changeStatus(Status.Idle))
+            dispatch(changeStatus(AppStatus.Idle))
             setUser({
                 id: '',
                 email: '',
@@ -84,7 +84,7 @@ export const Register = (): JSX.Element => {
                 onChange={updateField}
                 placeholder='Name'
             />
-                {app.status === Status.Loading ?
+                {app.status === AppStatus.Loading ?
                     <Spinner/>
                     :
                     <Button

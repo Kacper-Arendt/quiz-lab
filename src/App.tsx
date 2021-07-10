@@ -9,7 +9,9 @@ import {useAppDispatch} from './redux/hooks';
 import {auth, getUserDocument} from "./components/firebase";
 import {login} from "./redux/user/userSlice";
 import {IUser} from "./models/User";
-import { Game } from "./components/Game/Game";
+import {Game} from "./components/Game/Game";
+import {AddQuestion} from "./components/Question/AddQuestion";
+import { Questions } from "./components/Question/Questions";
 
 const GlobalStyles = createGlobalStyle`
   *,
@@ -49,7 +51,6 @@ function App() {
         dispatch(login(fetchedUser as IUser));
     }, [fetchedUser, dispatch]);
 
-
     const onAuthStateChange = () => {
         return auth.onAuthStateChanged(async user => {
             if (user) {
@@ -74,6 +75,8 @@ function App() {
                     <Route path='/user' component={UserProfile}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/login" component={UserLogin}/>
+                    <Route exact path="/questions" component={Questions}/>
+                    <Route exact path="/questions/add" component={AddQuestion}/>
                     <Route path='/' component={Game}/>
                 </Switch>
             </Router>

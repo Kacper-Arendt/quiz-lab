@@ -3,11 +3,13 @@ import styled from "styled-components";
 
 interface IProps {
     type: string,
-    name: string,
-    value: string,
-    placeholder: string,
+    id?: string,
+    name?: string,
+    value?: string,
+    placeholder?: string,
     backgroundColor?: string,
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 const InputEl = styled.input<IProps>`
@@ -41,9 +43,11 @@ export const Input = (props: IProps) => {
         <>
             <InputEl
                 type={props.type}
-                name = {props.name}
-                value = {props.value}
+                id={props.id}
+                name={props.name}
+                value={props.value}
                 onChange={props.onChange}
+                onBlur={props.onChange}
                 placeholder={props.placeholder}
                 backgroundColor={props.backgroundColor}
             />
