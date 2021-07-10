@@ -7,6 +7,7 @@ import {Button} from '../UI/Button';
 import {Form} from '../UI/Form';
 import {questions} from './QuestionData';
 import {Answer} from '../../models/Game';
+import {useFetchQuestions} from '../Question/useFetchQuestions';
 
 interface IProps {
     isChosen: boolean;
@@ -37,6 +38,7 @@ export const Game = () => {
     const {game} = useAppSelector(state => state);
     const questionRandomIds: Array<number> = [];
     const [correctAnswer, setCorrectAnswer] = useState<number | null>(null);
+    const data = useFetchQuestions();
 
     useEffect(() => {
         getRandomIds();
@@ -48,6 +50,7 @@ export const Game = () => {
     }, [game.currentQuestion])
 
     const getRandomIds = (): void => {
+
         const questionIds: Array<number> = [];
 
         questions.map(question =>
