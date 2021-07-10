@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c419752d-4bae-4533-91b9-363584286fdd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Game/Game.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/Game.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/game/gameSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/game/gameSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Game/QuestionData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/QuestionData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Question/Questions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Question/Questions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Game.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Game.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +18,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feat_auth" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
   </component>
@@ -45,7 +46,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -82,6 +83,14 @@
       <workItem from="1625197792415" duration="1501000" />
       <workItem from="1625401344926" duration="15039000" />
       <workItem from="1625463711125" duration="7444000" />
+      <workItem from="1625566967991" duration="974000" />
+      <workItem from="1625643019470" duration="11924000" />
+      <workItem from="1625668158170" duration="4848000" />
+      <workItem from="1625722511655" duration="5723000" />
+      <workItem from="1625813116262" duration="5669000" />
+      <workItem from="1625818837343" duration="1804000" />
+      <workItem from="1625821827377" duration="9322000" />
+      <workItem from="1625892128372" duration="5875000" />
     </task>
     <servers />
   </component>

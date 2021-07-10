@@ -11,7 +11,7 @@ import {login} from '../../redux/user/userSlice';
 import {RedirectIfUserIsAuth} from './Helpers';
 import {Spinner} from '../UI/Spinner';
 import {changeStatus} from '../../redux/appSlice';
-import {Status} from '../../models/app';
+import { AppStatus } from '../../models/Enums';
 
 export const UserLogin = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -39,7 +39,7 @@ export const UserLogin = (): JSX.Element => {
     const signInWithEmailAndPasswordHandler = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         try {
-            dispatch(changeStatus(Status.Loading))
+            dispatch(changeStatus(AppStatus.Loading))
             const userLogin = await auth.signInWithEmailAndPassword(formData.email, formData.password);
             if (userLogin.user) {
                 const userId = userLogin.user.uid;
@@ -53,11 +53,11 @@ export const UserLogin = (): JSX.Element => {
                     })
                 }
             }
-            dispatch(changeStatus(Status.Idle))
+            dispatch(changeStatus(AppStatus.Idle))
         } catch
             (error) {
             setError(error.message);
-            dispatch(changeStatus(Status.Idle))
+            dispatch(changeStatus(AppStatus.Idle))
         }
     };
     return (
@@ -79,7 +79,7 @@ export const UserLogin = (): JSX.Element => {
                 onChange={updateField}
                 placeholder='Password'
             />
-                {app.status === Status.Loading ?
+                {app.status === AppStatus.Loading ?
                     <Spinner/>
                     :
                     <Button

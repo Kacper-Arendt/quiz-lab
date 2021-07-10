@@ -3,7 +3,11 @@ export interface Question {
     question: string,
     answers: Array<Answer>,
     correctAnswer: number,
+}
+
+export interface AnsweredQuestion  extends Question{
     chosenAnswer: number | null,
+
 }
 
 export interface Answer {
@@ -14,6 +18,7 @@ export interface Answer {
 export interface IGame {
     questionRandomIds: number[],
     currentQuestion: number,
-    questions: Array<Question>,
+    questions: Array<AnsweredQuestion>,
     score: number,
+    chosenAnswer?: number | null,
 }

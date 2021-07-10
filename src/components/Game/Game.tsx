@@ -12,6 +12,7 @@ interface IProps {
     isChosen: boolean;
     correctAnswer: boolean;
 }
+
 const Div = styled.data`
   font-size: 2rem;
 
@@ -35,7 +36,6 @@ export const Game = () => {
     const dispatch = useAppDispatch();
     const {game} = useAppSelector(state => state);
     const questionRandomIds: Array<number> = [];
-    const [answeredQuestion, setAnsweredQuestion] = useState<number>();
     const [correctAnswer, setCorrectAnswer] = useState<number | null>(null);
 
     useEffect(() => {
@@ -64,14 +64,13 @@ export const Game = () => {
     };
 
     const answeredQuestionHandler = (id: number): void => {
-        setAnsweredQuestion(id);
         dispatch(setChosenAnswer(id))
     };
 
     const submitAnswerHandler = (e: React.SyntheticEvent): void => {
         e.preventDefault();
         const currentQuestion: number = game.questionRandomIds[game.currentQuestion];
-        if (answeredQuestion == game.questions[currentQuestion].correctAnswer) {
+        if (game.chosenAnswer == game.questions[currentQuestion].correctAnswer) {
             dispatch(updateScore());
         }
         setCorrectAnswer(game.questions[currentQuestion].correctAnswer);
@@ -88,8 +87,6 @@ export const Game = () => {
             if (game.questions) {
                 const currentQuestion: number = game.questionRandomIds[game.currentQuestion];
                 const selectedAnswerId: Answer[] = game.questions[currentQuestion].answers;
-                const chosenAnswer = game.questions[currentQuestion].chosenAnswer;
-
                 return (
                     <>
                         <Div>
@@ -97,7 +94,7 @@ export const Game = () => {
                             {selectedAnswerId.map(el => {
                                 return <P
                                     key={el.id}
-                                    isChosen={el.id === chosenAnswer}
+                                    isChosen={el.id === game.chosenAnswer}
                                     correctAnswer={el.id === correctAnswer}
                                     onClick={() => answeredQuestionHandler(selectedAnswerId[el.id].id)}>
                                     {game.questions[currentQuestion].answers[el.id].answer}
@@ -107,9 +104,6 @@ export const Game = () => {
                         <Button value='Submit' size='1.5rem'/>
                     </>
                 )
-            }
-            {
-                return (<h1>Loading</h1>)
             }
         } else {
             return (

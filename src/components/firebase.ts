@@ -1,8 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-
-import { IUser} from "../models/User";
+import {Firebase as FirebaseEnum} from '../models/Enums'
+import {IUser} from "../models/User";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA5a5WuH6_DH2-7ZVYDh8twPp-LH4KwK5g",
@@ -22,6 +22,11 @@ export const signInWithGoogle = () => {
     auth.signInWithRedirect(provider);
 };
 
+const checkIfIdExists = (dbName: string): string => {
+    const ref = firestore.collection(dbName).doc();
+    return ref.id;
+}
+
 export const generateUserDocument = async (user: IUser, id: string) => {
     if (!id) return;
     const userRef = firestore.doc(`users/${id}`);
@@ -40,6 +45,14 @@ export const generateUserDocument = async (user: IUser, id: string) => {
     }
 };
 
+export const getDocuments = async (path: FirebaseEnum) => {
+    try {
+        return await firestore.collection(path).get();
+    } catch (error) {
+        console.error("Error fetching data", error);
+    }
+};
+
 export const getUserDocument = async (id: string) => {
     try {
         const userDocument = await firestore.doc(`users/${id}`).get();
@@ -47,5 +60,22 @@ export const getUserDocument = async (id: string) => {
         return response as IUser;
     } catch (error) {
         console.error("Error fetching user", error);
+    }
+};
+
+export const generateQuestionDocument = async (questionData: any) => {
+    if (!questionData) return;
+    const id = await checkIfIdExists('questions');
+    const userRef = firestore.doc(`questions/${id}`);
+    const {question, correctAnswer, answers} = questionData;
+    try {
+        await userRef.set({
+            id,
+            question,
+            answers,
+            correctAnswer,
+        });
+    } catch (error) {
+        console.error("Error creating question document", error);
     }
 };
