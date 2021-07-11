@@ -1,13 +1,17 @@
 import {useEffect, useState} from 'react';
-import {Firebase} from '../../models/Enums';
+import {AppStatus, Firebase} from '../../models/Enums';
 import {Question} from '../../models/Game';
+import {changeStatus} from '../../redux/appSlice';
+import {useAppDispatch} from '../../redux/hooks';
 import {getDocuments} from '../firebase';
 
 export const useFetchQuestions = () => {
     const [questions, setQuestions] = useState<Array<Question>>([]);
+    const dispatch = useAppDispatch();
 
     const data = async () => {
         const fetchedQuestion: Array<Question> = [];
+
         const dataArr = await getDocuments(Firebase.Questions);
         if (dataArr) {
             dataArr.forEach(doc => {
@@ -18,15 +22,17 @@ export const useFetchQuestions = () => {
                 fetchedQuestion.push({
                     id,
                     answers: AnswersArr,
-                    correctAnswer,
+                    correctAnswer: parseFloat(correctAnswer),
                     question,
                 });
             })
             setQuestions(fetchedQuestion);
+            dispatch(changeStatus(AppStatus.Idle))
         }
     }
 
     useEffect(() => {
+        dispatch(changeStatus(AppStatus.Loading))
         data();
     }, []);
 
