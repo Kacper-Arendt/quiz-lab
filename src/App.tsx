@@ -12,6 +12,8 @@ import {IUser} from "./models/User";
 import {Game} from "./components/Game/Game";
 import {AddQuestion} from "./components/Question/AddQuestion";
 import { Questions } from "./components/Question/Questions";
+import { Home } from "./components/HomePage/Home";
+import background from './images/question-mark-background.jpg'
 
 const GlobalStyles = createGlobalStyle`
   *,
@@ -26,10 +28,15 @@ const GlobalStyles = createGlobalStyle`
     font-size: 62.5%;
     width: 100%;
     height: 100%;
+    background: url(${background});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
   }
 
   body {
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
   }
 `
@@ -77,7 +84,8 @@ function App() {
                     <Route path="/login" component={UserLogin}/>
                     <Route exact path="/questions" component={Questions}/>
                     <Route exact path="/questions/add" component={AddQuestion}/>
-                    <Route path='/' component={Game}/>
+                    <Route path='/game' component={Game}/>
+                    <Route path='/' component={Home}/>
                 </Switch>
             </Router>
         </>
