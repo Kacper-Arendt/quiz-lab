@@ -12,11 +12,12 @@ const FormEl = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30rem;
-  margin: 5rem auto;
+  width: 25rem;
+  margin: 10rem auto;
   padding: 2.5rem;
-  border: .2rem solid black;
+  border: .3rem solid black;
   border-radius: 2rem;
+  background-color: rgba(64, 64, 64, .8);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 `
 

@@ -15,7 +15,6 @@ interface IProps {
 }
 
 const Div = styled.data`
-  font-size: 2rem;
 
   h2 {
     margin: 2rem;
