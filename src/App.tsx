@@ -38,6 +38,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
+    letter-spacing: 1.5px;
     color: white;
   }
 `

@@ -13,9 +13,10 @@ const StyledLink = styled(Link)`
   font-size: 1.3rem;
   color: white;
   text-decoration: none;
-  transition: all .5s;
+  transition: all .4s;
   
   :hover{
+    transform: scaleX(1.1);
     color: #888;
   }
 `

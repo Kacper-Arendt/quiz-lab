@@ -71,25 +71,27 @@ export const Register = (): JSX.Element => {
             {RedirectIfUserIsAuth('/user')}
             <Form onSubmit={createUserWithEmailAndPasswordHandler}>
                 <H1>Register</H1>
-                {errorMessage ? errorMessage : null}
+                <p>{errorMessage ? errorMessage : null}</p>
                 <Input
-                    type='text'
+                    type='email'
                     name='email'
                     value={user.email}
-                    onChange={updateField}
+                    autoComplete="new-password"
                     placeholder='Email'
+                    onChange={updateField}
                 /> <Input
                 type='password'
                 name='password'
                 value={user.password}
-                onChange={updateField}
                 placeholder='Password'
+                onChange={updateField}
             /> <Input
                 type='text'
                 name='name'
                 value={user.name}
-                onChange={updateField}
+                autoComplete="new-password"
                 placeholder='Name'
+                onChange={updateField}
             />
                 {app.status === AppStatus.Loading ?
                     <Spinner/>
