@@ -1,5 +1,5 @@
 export interface Question {
-    id: number,
+    id: string,
     question: string,
     answers: Array<Answer>,
     correctAnswer: number,

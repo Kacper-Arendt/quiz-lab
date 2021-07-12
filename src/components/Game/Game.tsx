@@ -5,8 +5,9 @@ import {setChosenAnswer, startGame, updateCurrentQuestion, updateScore} from '..
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {Button} from '../UI/Button';
 import {Form} from '../UI/Form';
-import {questions} from './QuestionData';
-import {Answer} from '../../models/Game';
+import {Answer, Question} from '../../models/Game';
+import {useFetchQuestions} from '../Question/useFetchQuestions';
+import {AppStatus} from '../../models/Enums';
 
 interface IProps {
     isChosen: boolean;
@@ -34,59 +35,26 @@ const P = styled.p<IProps>`
 
 export const Game = () => {
     const dispatch = useAppDispatch();
-    const {game} = useAppSelector(state => state);
+    const {game, app} = useAppSelector(state => state);
     const questionRandomIds: Array<number> = [];
     const [correctAnswer, setCorrectAnswer] = useState<number | null>(null);
+    const questions: Array<Question> = useFetchQuestions();
 
     useEffect(() => {
-        getRandomIds();
         dispatch(startGame({questionRandomIds, questions}))
-    }, []);
+    }, [questions]);
 
-    useEffect(() => {
-        questionHandler();
-    }, [game.currentQuestion])
-
-    const getRandomIds = (): void => {
-        const questionIds: Array<number> = [];
-
-        questions.map(question =>
-            questionIds.push(question.id)
-        );
-
-        for (let i = 0; i < 5;) {
-            let randomNumber = (Math.trunc(Math.random() * questionIds.length))
-            if (!questionRandomIds.includes(randomNumber)) {
-                questionRandomIds.push(randomNumber);
-                i++;
-            }
-        }
-    };
 
     const answeredQuestionHandler = (id: number): void => {
         dispatch(setChosenAnswer(id))
     };
 
-    const submitAnswerHandler = (e: React.SyntheticEvent): void => {
-        e.preventDefault();
-        const currentQuestion: number = game.questionRandomIds[game.currentQuestion];
-        if (game.chosenAnswer == game.questions[currentQuestion].correctAnswer) {
-            dispatch(updateScore());
-        }
-        setCorrectAnswer(game.questions[currentQuestion].correctAnswer);
-
-        const nextQuestion = () => {
-            dispatch(updateCurrentQuestion());
-            setCorrectAnswer(null);
-        }
-        setTimeout(nextQuestion, 800);
-    };
-
     const questionHandler = () => {
         if (game.currentQuestion <= 4) {
             if (game.questions) {
-                const currentQuestion: number = game.questionRandomIds[game.currentQuestion];
+                const currentQuestion: number = game.currentQuestion;
                 const selectedAnswerId: Answer[] = game.questions[currentQuestion].answers;
+
                 return (
                     <>
                         <Div>
@@ -115,13 +83,29 @@ export const Game = () => {
         }
     };
 
+    const submitAnswerHandler = (e: React.SyntheticEvent): void => {
+        e.preventDefault();
+        const currentQuestion: number = game.currentQuestion;
+        if (game.chosenAnswer === game.questions[currentQuestion].correctAnswer) {
+            dispatch(updateScore());
+        }
+        setCorrectAnswer(game.questions[currentQuestion].correctAnswer);
 
+        const nextQuestion = () => {
+            dispatch(updateCurrentQuestion());
+            setCorrectAnswer(null);
+        }
+        setTimeout(nextQuestion, 800);
+    }
     return (
         <>
-            <Form onSubmit={submitAnswerHandler}>
-                {questionHandler()}
-
-            </Form>
+            {app.status === AppStatus.Idle ?
+                <Form onSubmit={submitAnswerHandler}>
+                    {questionHandler()}
+                </Form>
+                :
+                <h1>Loading...</h1>
+            }
         </>
     )
 }
