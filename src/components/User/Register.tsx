@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {auth, generateUserDocument} from '../firebase';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
+import styled from 'styled-components';
 
 import {INewUser} from '../../models/User';
 import {Button} from '../UI/Button';
@@ -10,7 +11,13 @@ import {RedirectIfUserIsAuth} from './Helpers';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {changeStatus} from '../../redux/appSlice';
 import {Spinner} from '../UI/Spinner';
-import { AppStatus } from '../../models/Enums';
+import {AppStatus} from '../../models/Enums';
+import {LinkEl as Link} from '../UI/Link'
+
+const H1 = styled.h1`
+  margin-bottom: 1rem;
+  font-size: 2.4rem;
+`
 
 export const Register = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -63,7 +70,7 @@ export const Register = (): JSX.Element => {
         <>
             {RedirectIfUserIsAuth('/user')}
             <Form onSubmit={createUserWithEmailAndPasswordHandler}>
-                <h1>Register</h1>
+                <H1>Register</H1>
                 {errorMessage ? errorMessage : null}
                 <Input
                     type='text'
@@ -92,7 +99,7 @@ export const Register = (): JSX.Element => {
                         size='1.5rem'
                     />
                 }
-                <Link to="/login">Already have an account?</Link>
+                <Link to='/login' value='Already have an account?'></Link>
             </Form>
         </>
     )

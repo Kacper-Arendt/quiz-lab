@@ -15,21 +15,34 @@ interface IProps {
 }
 
 const Div = styled.data`
-
+  font-size: 1.2rem;
+  word-break: break-word;
   h2 {
     margin: 2rem;
   }
 `
 
 const P = styled.p<IProps>`
-  padding: 1rem .4rem;
+  padding: .8rem .3rem;
   border-radius: 2rem;
   text-align: center;
   margin: 2rem 0;
   cursor: pointer;
-  background-color: ${(props) => props.isChosen && '#00F275'};
-  background-color: ${(props) => props.correctAnswer && '#00A651'};
-  border: ${(props) => props.correctAnswer ? '2px solid #008C44' : '1px solid orange'};
+  background-color: ${(props) => props.isChosen && '#038C33'};
+  background-color: ${(props) => props.correctAnswer && '#05F240'};
+  border: ${(props) => props.correctAnswer ? '3px solid #37A63E' : '2px solid orange'};
+  font-weight: bold;
+`
+
+const Result = styled.div`
+  margin: 1rem 1rem 0;
+  
+  h1{
+    margin: .7rem;
+  }
+  h2{
+    margin: 1rem;
+  }
 `
 
 export const Game = () => {
@@ -68,16 +81,20 @@ export const Game = () => {
                                 </P>
                             })}
                         </Div>
-                        <Button value='Submit' size='1.5rem'/>
+                        <Button  onClick={submitAnswerHandler} value='Submit' size='1.5rem'/>
                     </>
                 )
             }
         } else {
             return (
-                <>
-                    <h1>Awesome</h1>
-                    <h2>Your Score: {game.score}/{game.currentQuestion}</h2>
-                </>
+                <Result>
+                    <h1>Your Score: {game.score}/{game.currentQuestion}</h1>
+                    {game.score > 2 ?
+                        (<h2>Awesome!</h2>):
+                        (<h2>Dont Give Up!</h2>)
+                    }
+                    <Button value='Next Game' size='1.5rem'/>
+                </Result>
             )
         }
     };
@@ -99,7 +116,7 @@ export const Game = () => {
     return (
         <>
             {app.status === AppStatus.Idle ?
-                <Form onSubmit={submitAnswerHandler}>
+                <Form >
                     {questionHandler()}
                 </Form>
                 :

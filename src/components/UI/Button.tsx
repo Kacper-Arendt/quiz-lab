@@ -5,7 +5,7 @@ interface IProps {
     value?: string,
     size?: string,
     backgroundColor?: string,
-    onClick?: () => void,
+    onClick?: (e: React.SyntheticEvent) => void,
 }
 
 
