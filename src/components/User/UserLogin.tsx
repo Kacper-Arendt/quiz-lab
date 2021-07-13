@@ -10,8 +10,9 @@ import {login} from '../../redux/user/userSlice';
 import {RedirectIfUserIsAuth} from './Helpers';
 import {Spinner} from '../UI/Spinner';
 import {changeStatus} from '../../redux/appSlice';
-import { AppStatus } from '../../models/Enums';
+import {AppStatus} from '../../models/Enums';
 import {LinkEl as Link} from '../UI/Link'
+import {Error} from '../UI/ErrorMesage';
 
 export const UserLogin = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -69,7 +70,7 @@ export const UserLogin = (): JSX.Element => {
             {RedirectIfUserIsAuth('/user')}
             <Form onSubmit={signInWithEmailAndPasswordHandler}>
                 <h1>Login</h1>
-                <p>{error ? error : null}</p>
+                <Error value={error && error }/>
                 <Input
                     type='email'
                     name='email'

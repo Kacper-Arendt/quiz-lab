@@ -13,6 +13,7 @@ import {changeStatus} from '../../redux/appSlice';
 import {Spinner} from '../UI/Spinner';
 import {AppStatus} from '../../models/Enums';
 import {LinkEl as Link} from '../UI/Link'
+import {Error} from '../UI/ErrorMesage';
 
 const H1 = styled.h1`
   margin-bottom: 1rem;
@@ -29,7 +30,7 @@ export const Register = (): JSX.Element => {
         password: '',
         name: ''
     });
-    const [errorMessage, setErrorMessage] = useState<string>();
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     const updateField = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setUser({
@@ -71,7 +72,7 @@ export const Register = (): JSX.Element => {
             {RedirectIfUserIsAuth('/user')}
             <Form onSubmit={createUserWithEmailAndPasswordHandler}>
                 <H1>Register</H1>
-                <p>{errorMessage ? errorMessage : null}</p>
+                <Error value={errorMessage && errorMessage }/>
                 <Input
                     type='email'
                     name='email'
