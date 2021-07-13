@@ -25,6 +25,7 @@ const Div = styled.data`
 `
 
 const P = styled.p<IProps>`
+  width: 100%;
   padding: .8rem .3rem;
   border-radius: 2rem;
   text-align: center;

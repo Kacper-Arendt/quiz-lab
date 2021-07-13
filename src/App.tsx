@@ -11,9 +11,10 @@ import {login} from "./redux/user/userSlice";
 import {IUser} from "./models/User";
 import {Game} from "./components/Game/Game";
 import {AddQuestion} from "./components/Question/AddQuestion";
-import { Questions } from "./components/Question/Questions";
-import { Home } from "./components/HomePage/Home";
+import {Questions} from "./components/Question/Questions";
+import {Home} from "./components/HomePage/Home";
 import background from './images/question-mark-background.jpg'
+import {device} from './models/MediaQueries';
 
 const GlobalStyles = createGlobalStyle`
   *,
@@ -34,6 +35,13 @@ const GlobalStyles = createGlobalStyle`
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
+   @media${device.mobileM} {
+     font-size: 71.25%;
+   }
+  @media${device.tablet} {
+     font-size: 81.25%;
+   }
   }
 
   body {
