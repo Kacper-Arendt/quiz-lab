@@ -6,18 +6,20 @@ import {Spinner} from '../UI/Spinner';
 import {Wrapper} from '../UI/Wrapper';
 import styled from 'styled-components';
 
+const QuestionsEl = styled.div`
+  margin: 0 2rem;
+`
+
 const Question = styled.div`
-  margin: 1rem;
-  padding: 1rem 3rem;
+  margin: 2rem .5rem;
+  padding: 1rem 2rem;
   background-color: rgba(0, 0, 0, .65);
+  text-align: center;
+  border-bottom: 2px solid orange;
 
   h2 {
-    margin: .5rem;
+    margin: 1rem .5rem;
     color: green;
-  }
-
-  h3 {
-    text-align: center;
   }
 `
 
@@ -54,19 +56,19 @@ export const Questions = () => {
 
     const showFetchedQuestion = () => {
         return (
-            <Wrapper>
+            <Wrapper margin='13rem 0'>
                 {loading ?
                     (<Spinner size='10'/>)
                     :
                     (
-                        <div>
+                        <QuestionsEl>
                             {questions.map(el =>
                                 <Question key={el.id}>
                                     <h2>Q: {el.question}</h2>
                                     <h3>{el.answers[el.correctAnswer].answer}</h3>
                                 </Question>
                             )}
-                        </div>
+                        </QuestionsEl>
                     )
                 }
             </Wrapper>

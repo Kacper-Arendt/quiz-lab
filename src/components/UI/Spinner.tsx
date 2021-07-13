@@ -15,7 +15,7 @@ const Span = styled.div<IProps>`
     height: ${(props: IProps) => props.size ? props.size + 'rem' : '3rem'};
     margin: .5rem;
     border-radius: 50%;
-    border: .3rem solid orange;
+    border: .5rem solid orange;
     border-color: orange transparent orange transparent;
     animation: lds-dual-ring .7s linear infinite;
   }

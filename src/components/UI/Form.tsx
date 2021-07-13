@@ -13,7 +13,7 @@ const FormEl = styled.form`
   justify-content: center;
   align-items: center;
   width: 25rem;
-  margin: 10rem auto;
+  margin: 15% auto;
   padding: 2.5rem;
   border: .3rem solid black;
   border-radius: 2rem;

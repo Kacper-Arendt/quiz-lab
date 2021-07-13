@@ -16,9 +16,11 @@ interface IProps {
 
 const Div = styled.data`
   font-size: 1.2rem;
-  word-break: break-word;
+  text-align: center;
+
   h2 {
-    margin: 2rem;
+    padding: 2.rem;
+    margin: .5rem .2rem;
   }
 `
 
@@ -37,6 +39,7 @@ const P = styled.p<IProps>`
 
 const Result = styled.div`
   margin: 1rem 1rem 0;
+  text-align: center;
   
   h1{
     margin: .7rem;
@@ -89,7 +92,7 @@ export const Game = () => {
         } else {
             return (
                 <Result>
-                    <h1>Your Score: {game.score}/{game.currentQuestion}</h1>
+                    <h1>{game.score}/{game.currentQuestion}</h1>
                     {game.score > 2 ?
                         (<h2>Awesome!</h2>):
                         (<h2>Dont Give Up!</h2>)
