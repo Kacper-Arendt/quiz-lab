@@ -32,6 +32,7 @@ const P = styled.p<IProps>`
   background-color: ${(props) => props.correctAnswer && '#05F240'};
   border: ${(props) => props.correctAnswer ? '3px solid #37A63E' : '2px solid orange'};
   font-weight: bold;
+  color: white;
 `
 
 const Result = styled.div`

@@ -28,11 +28,12 @@ const GlobalStyles = createGlobalStyle`
     font-size: 62.5%;
     width: 100%;
     height: 100%;
-    background: url(${background});
-    background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
+    background: url(${background}) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 
   body {
