@@ -1,11 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {Button} from '../UI/Button';
 import {logout} from '../../redux/user/userSlice';
 import {useHistory} from 'react-router';
 import {auth} from '../firebase';
-import styled from 'styled-components';
+import avatarAvocado from '.././../images/avatarAvocado.svg'
 
 const Profile = styled.div`
   height: 100vh;
@@ -22,8 +23,10 @@ const Profile = styled.div`
       margin: .5rem;
     }
     img{
-      width: 10rem;
-      height: 10rem;
+      margin: 1rem 25%;
+      width: 11rem;
+      height: 11rem;
+      justify-self: center;
       background-color: orange;
       border-radius: 10rem;
     }
@@ -47,12 +50,11 @@ export const UserProfile = () => {
         dispatch(logout());
         history.push('/login')
     }
-
     return (
         <>
             <Profile>
                 <div>
-                    <img src="" alt=""/>
+                    <img src={avatarAvocado} alt="Avocado Avatar"/>
                     <p>Name: {user.name}</p>
                     <p>Mail: {user.email} </p>
                 </div>
