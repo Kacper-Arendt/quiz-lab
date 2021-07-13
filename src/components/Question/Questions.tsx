@@ -1,10 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import {Firebase} from '../../models/Enums';
 import {getDocuments} from '../firebase';
-import {Question} from '../../models/Game';
+import {Question as questionModel} from '../../models/Game';
+import {Spinner} from '../UI/Spinner';
+import {Wrapper} from '../UI/Wrapper';
+import styled from 'styled-components';
+
+const Question = styled.div`
+  margin: 1rem;
+  padding: 1rem 3rem;
+  background-color: rgba(0, 0, 0, .65);
+
+  h2 {
+    margin: .5rem;
+    color: green;
+  }
+
+  h3 {
+    text-align: center;
+  }
+`
 
 export const Questions = () => {
-    const [questions, setQuestions] = useState<Array<Question>>([]);
+    const [questions, setQuestions] = useState<Array<questionModel>>([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -14,7 +32,7 @@ export const Questions = () => {
     const fetchQuestions = async () => {
         setLoading(true);
         const data = await getDocuments(Firebase.Questions);
-        const fetchedQuestion: Array<Question> = []
+        const fetchedQuestion: Array<questionModel> = []
 
         if (data) {
             data.forEach(doc => {
@@ -36,28 +54,27 @@ export const Questions = () => {
 
     const showFetchedQuestion = () => {
         return (
-            <>
+            <Wrapper>
                 {loading ?
-                    (<h1>Loading</h1>)
+                    (<Spinner size='10'/>)
                     :
                     (
                         <div>
                             {questions.map(el =>
-                                <div key={el.id}>
-                                    <h2>{el.question}</h2>
+                                <Question key={el.id}>
+                                    <h2>Q: {el.question}</h2>
                                     <h3>{el.answers[el.correctAnswer].answer}</h3>
-                                </div>
+                                </Question>
                             )}
                         </div>
                     )
                 }
-            </>
+            </Wrapper>
         )
     }
 
     return (
         <>
-            <h1>Questions</h1>
             {showFetchedQuestion()}
         </>
     )

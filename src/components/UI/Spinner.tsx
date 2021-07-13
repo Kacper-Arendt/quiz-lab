@@ -1,18 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Span = styled.div`
+interface IProps {
+    size?: string,
+}
+
+const Span = styled.div<IProps>`
   display: inline-block;
 
   :after {
     content: " ";
     display: block;
-    width: 2rem;
-    height: 2rem;
+    width: ${(props: IProps) => props.size ? props.size + 'rem' : '3rem'};
+    height: ${(props: IProps) => props.size ? props.size + 'rem' : '3rem'};
     margin: .5rem;
     border-radius: 50%;
-    border: .3rem solid black;
-    border-color: black transparent black transparent;
+    border: .3rem solid orange;
+    border-color: orange transparent orange transparent;
     animation: lds-dual-ring .7s linear infinite;
   }
 
@@ -26,8 +30,8 @@ const Span = styled.div`
   }
 `
 
-export const Spinner = (): JSX.Element => {
+export const Spinner = (props: IProps): JSX.Element => {
     return (
-            <Span></Span>
+        <Span size={props.size}></Span>
     );
 }
