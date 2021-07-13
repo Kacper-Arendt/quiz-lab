@@ -11,9 +11,11 @@ const Element = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 3rem;
-  width: 15rem;
-  height: 15rem;
+  margin: 2rem 0;
+  width: 50vw;
+  height: 50vw;
+  max-width: 25rem;
+  max-height: 25rem;
   background-color: rgba(0, 0, 0, 0.65);
   transition: all .3s;
 
