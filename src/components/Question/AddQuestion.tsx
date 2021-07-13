@@ -14,16 +14,15 @@ const Answers = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  width: 19rem;
+  width: 100%;
 `
 
 const CorrectAnswers = styled(Answers)`
-  width: 18rem;
+  width: 75%;
   padding: .7rem .5rem;
   background-color: rgba(0, 0, 0, .65);
   border-radius: 2rem;
-  margin-bottom: 1rem;
-
+  margin: 1.5rem 0 1rem;
 
   h2 {
     color: green;
@@ -37,6 +36,7 @@ const CorrectAnswers = styled(Answers)`
 
   p {
     margin: 0 .5rem;
+    font-weight: 600;
   }
 `
 
@@ -93,7 +93,7 @@ export const AddQuestion = () => {
                            autoComplete='off'/>
                 </Answers>
                 <CorrectAnswers>
-                    <h2>Correct Answer: </h2>
+                    <h2>Correct Answer </h2>
                     {choices.map(el => {
                         return (
                             <label key={el.id} htmlFor={el.value}>

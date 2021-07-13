@@ -7,18 +7,20 @@ import {Wrapper} from '../UI/Wrapper';
 import styled from 'styled-components';
 
 const QuestionsEl = styled.div`
-  margin: 0 2rem;
+  width: 80vw;
+  max-width: 40rem;
+  margin: 10vh 0;
 `
 
 const Question = styled.div`
-  margin: 2rem .5rem;
-  padding: 1rem 2rem;
+  margin: 1.5rem .5rem;
+  padding: 1rem .8rem;
   background-color: rgba(0, 0, 0, .65);
   text-align: center;
   border-bottom: 2px solid orange;
 
   h2 {
-    margin: 1rem .5rem;
+    margin: 1rem .1rem;
     color: green;
   }
 `
@@ -56,7 +58,7 @@ export const Questions = () => {
 
     const showFetchedQuestion = () => {
         return (
-            <Wrapper margin='13rem 0'>
+            <Wrapper>
                 {loading ?
                     (<Spinner size='10'/>)
                     :
