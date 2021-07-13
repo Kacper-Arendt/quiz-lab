@@ -15,23 +15,6 @@ const Profile = styled.div`
   grid-template-rows: 1fr 3fr 1fr;
   justify-content: center;
 
-  div {
-    font-size: 1.5rem;
-    margin: 1rem;
-    
-    p{
-      margin: .5rem;
-    }
-    img{
-      margin: 1rem 25%;
-      width: 11rem;
-      height: 11rem;
-      justify-self: center;
-      background-color: orange;
-      border-radius: 10rem;
-    }
-  }
-
   button {
     grid-row: 3;
     align-self: flex-end;
@@ -40,6 +23,33 @@ const Profile = styled.div`
   }
 `
 
+const About = styled.div`
+  font-size: 1.5rem;
+  margin: 2rem 1rem;
+  background-color: rgba(0, 0, 0, .65);
+  padding: 1rem;
+  border: .3rem solid orange;
+  p {
+    margin: .5rem;
+  }
+
+  img {
+    margin: 1rem 25%;
+    width: 11rem;
+    height: 11rem;
+    justify-self: center;
+    background-color: orange;
+    border-radius: 10rem;
+  }
+`
+
+const SingIn = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+`
 export const UserProfile = () => {
     const {user} = useAppSelector(state => state);
     const dispatch = useAppDispatch();
@@ -52,18 +62,27 @@ export const UserProfile = () => {
     }
     return (
         <>
-            <Profile>
-                <div>
-                    <img src={avatarAvocado} alt="Avocado Avatar"/>
-                    <p>Name: {user.name}</p>
-                    <p>Mail: {user.email} </p>
-                </div>
-                <Button
-                    onClick={logoutHandler}
-                    value='Sing out'
-                    size='1.5rem'/>
-            </Profile>
-
+            {user.id ?
+                <Profile>
+                    <About>
+                        <img src={avatarAvocado} alt="Avocado Avatar"/>
+                        <p>Name: {user.name}</p>
+                        <p>Mail: {user.email} </p>
+                    </About>
+                    <Button
+                        onClick={logoutHandler}
+                        value='Sign out'
+                        size='1.5rem'/>
+                </Profile>
+                :
+                <SingIn>
+                    <h1>You're Not Logged In</h1>
+                    <Button
+                        onClick={() => history.push('/login')}
+                        value='Sign In'
+                        size='1.5rem'/>
+                </SingIn>
+            }
         </>
     )
 }

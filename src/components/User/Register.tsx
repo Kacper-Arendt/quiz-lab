@@ -99,7 +99,7 @@ export const Register = (): JSX.Element => {
                     :
                     <Button
                         value='Submit'
-                        size='1.5rem'
+                        size='1.3rem'
                     />
                 }
                 <Link to='/login' value='Already have an account?'></Link>

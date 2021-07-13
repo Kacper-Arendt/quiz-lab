@@ -15,6 +15,7 @@ interface IProps {
 
 const InputEl = styled.input<IProps>`
   width: 90%;
+  max-width: 25rem;
   margin: .8rem;
   padding: 0.7rem;
   border: .15rem solid black;
