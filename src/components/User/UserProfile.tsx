@@ -7,10 +7,12 @@ import {logout} from '../../redux/user/userSlice';
 import {useHistory} from 'react-router';
 import {auth} from '../firebase';
 import avatarAvocado from '.././../images/avatarAvocado.svg'
+import {device} from '../../models/MediaQueries';
 
 const Profile = styled.div`
   height: 100vh;
   display: grid;
+  margin: 0 1.5rem;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 3fr 1fr;
   justify-content: center;
@@ -21,6 +23,12 @@ const Profile = styled.div`
     margin-top: auto;
     margin-bottom: 2rem;
   }
+
+@media${device.tablet} {
+  button{
+    max-width: 30rem;
+  }
+}
 `
 
 const About = styled.div`
@@ -29,6 +37,7 @@ const About = styled.div`
   background-color: rgba(0, 0, 0, .65);
   padding: 1rem;
   border: .3rem solid orange;
+
   p {
     margin: .5rem;
   }

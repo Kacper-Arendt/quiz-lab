@@ -4,7 +4,7 @@ const size = {
     tablet: '720px',
     laptop: '1024px',
     laptopL: '1440px',
-    desktop: '1920px'
+    desktop: '1920px',
 }
 
 export const device: typeof size = {

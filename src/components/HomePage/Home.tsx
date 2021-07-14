@@ -4,11 +4,11 @@ import {LinkEl} from '../UI/Link';
 import styled from 'styled-components';
 import {useHistory} from 'react-router';
 import {Wrapper} from '../UI/Wrapper';
+import {device} from '../../models/MediaQueries';
 
 
 const Element = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 2rem 0;
@@ -17,7 +17,16 @@ const Element = styled.div`
   max-width: 25rem;
   max-height: 25rem;
   background-color: rgba(0, 0, 0, 0.65);
-  transition: all .3s;
+  transition: all .2s;
+
+
+@media${device.laptop} {
+  margin: 15vh 5vw;
+}
+ @media${device.desktop} {
+  max-width: 28rem;
+  max-height: 28rem;
+}
 
   h1 {
     margin-bottom: .7rem;
@@ -26,6 +35,7 @@ const Element = styled.div`
   }
 
   :active, :focus {
+    transform: scale(.95);
     border: .4rem solid orange;
   }
 `
@@ -40,7 +50,7 @@ export const Home = () => {
             </Element>
 
             <Element onClick={() => history.push('/login')}>
-                <h1>Sing In</h1>
+                <h1>Sign In</h1>
             </Element>
         </Wrapper>
     )
