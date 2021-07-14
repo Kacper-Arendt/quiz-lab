@@ -25,31 +25,39 @@ const Profile = styled.div`
   }
 
 @media${device.tablet} {
-  button{
+  button {
+    justify-self: center;
     max-width: 30rem;
   }
 }
 `
 
 const About = styled.div`
-  font-size: 1.5rem;
-  margin: 2rem 1rem;
-  background-color: rgba(0, 0, 0, .65);
+  width: 55vw;
+  min-width: 25rem;
+  margin: 10vh 1rem;
   padding: 1rem;
+  justify-self: center;
   border: .3rem solid orange;
+  background-color: rgba(0, 0, 0, .65);
+  font-size: 1.5rem;
 
   p {
     margin: .5rem;
   }
 
   img {
-    margin: 1rem 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 11rem;
     height: 11rem;
-    justify-self: center;
     background-color: orange;
     border-radius: 10rem;
   }
+
+@media${device.tablet} {
+  max-width: 35rem;
 `
 
 const SingIn = styled.div`
@@ -58,6 +66,10 @@ const SingIn = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100vh;
+
+@media${device.tablet} {
+  font-size: 2rem;
+}
 `
 export const UserProfile = () => {
     const {user} = useAppSelector(state => state);

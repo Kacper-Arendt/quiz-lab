@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
  const P = styled.p`
     color: red;
     margin: .8rem 0;

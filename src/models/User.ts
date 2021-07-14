@@ -3,8 +3,8 @@ export interface IUser {
     email: string,
     name: string,
     isAuth?: boolean,
-}
+};
 
 export interface INewUser extends IUser {
-    password: string
-}
+    password: string,
+};

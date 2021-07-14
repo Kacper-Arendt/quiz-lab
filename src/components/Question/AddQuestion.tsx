@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+
 import {AppStatus} from '../../models/Enums';
 import {changeStatus} from '../../redux/appSlice';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
@@ -10,9 +11,6 @@ import {Input} from '../UI/Input';
 import {Spinner} from '../UI/Spinner';
 
 const Answers = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   text-align: center;
   width: 100%;
 `

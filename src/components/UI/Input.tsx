@@ -41,7 +41,6 @@ const InputEl = styled.input<IProps>`
     background-color: aqua;
     border: .2rem solid orange;
   }
-
 `
 
 export const Input = (props: IProps) => {

@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
+import styled from 'styled-components';
+
 import {Firebase} from '../../models/Enums';
 import {getDocuments} from '../firebase';
 import {Question as questionModel} from '../../models/Game';
 import {Spinner} from '../UI/Spinner';
 import {Wrapper} from '../UI/Wrapper';
-import styled from 'styled-components';
 
 const QuestionsEl = styled.div`
   width: 80vw;
@@ -23,6 +24,13 @@ const Question = styled.div`
     margin: 1rem .1rem;
     color: green;
   }
+`
+
+const SpinnerEl = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const Questions = () => {
@@ -60,7 +68,7 @@ export const Questions = () => {
         return (
             <Wrapper>
                 {loading ?
-                    (<Spinner size='10'/>)
+                    (<SpinnerEl><Spinner size='10'/> </SpinnerEl>)
                     :
                     (
                         <QuestionsEl>

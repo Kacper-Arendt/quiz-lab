@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+
 import {device} from '../../models/MediaQueries';
 
 export const Div = styled.div<IProps>`

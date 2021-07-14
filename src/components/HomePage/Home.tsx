@@ -1,11 +1,9 @@
 import React from 'react';
-import {Button} from '../UI/Button';
-import {LinkEl} from '../UI/Link';
 import styled from 'styled-components';
 import {useHistory} from 'react-router';
+
 import {Wrapper} from '../UI/Wrapper';
 import {device} from '../../models/MediaQueries';
-
 
 const Element = styled.div`
   display: flex;
@@ -19,25 +17,24 @@ const Element = styled.div`
   background-color: rgba(0, 0, 0, 0.65);
   transition: all .2s;
 
-
-@media${device.laptop} {
-  margin: 15vh 5vw;
-}
- @media${device.desktop} {
-  max-width: 28rem;
-  max-height: 28rem;
-}
-
   h1 {
     margin-bottom: .7rem;
     text-align: center;
     font-size: 2.4rem;
   }
+  
+  :hover{
+    transform: scale(1.05);
+  }
 
   :active, :focus {
-    transform: scale(.95);
+    transform: scale(.98);
     border: .4rem solid orange;
   }
+
+@media${device.laptop} {
+  margin: 15vh 5vw;
+}
 `
 
 export const Home = () => {

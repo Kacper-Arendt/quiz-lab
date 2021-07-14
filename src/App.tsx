@@ -42,6 +42,9 @@ const GlobalStyles = createGlobalStyle`
   @media${device.tablet} {
      font-size: 81.25%;
    }
+  @media${device.laptopL} {
+    font-size: 100%;
+  }
   }
 
   body {

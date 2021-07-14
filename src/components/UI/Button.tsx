@@ -8,7 +8,6 @@ interface IProps {
     onClick?: (e: React.SyntheticEvent) => void,
 }
 
-
 const ButtonEl = styled.button<IProps>`
   border: .2rem solid black;
   border-radius: 2rem;

@@ -8,6 +8,7 @@ import {Form} from '../UI/Form';
 import {Answer, Question} from '../../models/Game';
 import {useFetchQuestions} from '../Question/useFetchQuestions';
 import {AppStatus} from '../../models/Enums';
+import { Spinner } from '../UI/Spinner';
 
 interface IProps {
     isChosen: boolean;
@@ -60,7 +61,6 @@ export const Game = () => {
     useEffect(() => {
         dispatch(startGame({questionRandomIds, questions}))
     }, [questions]);
-
 
     const answeredQuestionHandler = (id: number): void => {
         dispatch(setChosenAnswer(id))
@@ -120,13 +120,15 @@ export const Game = () => {
     }
     return (
         <>
-            {app.status === AppStatus.Idle ?
                 <Form >
-                    {questionHandler()}
+                    {app.status === AppStatus.Idle ?
+                        (questionHandler())
+                        :
+                        <Spinner size='10'/>
+                    }
+
                 </Form>
-                :
-                <h1>Loading...</h1>
-            }
+
         </>
     )
 }
