@@ -1,10 +1,40 @@
 import React, {useEffect, useState} from 'react';
+import styled from 'styled-components';
+
 import {Firebase} from '../../models/Enums';
 import {getDocuments} from '../firebase';
-import {Question} from '../../models/Game';
+import {Question as questionModel} from '../../models/Game';
+import {Spinner} from '../UI/Spinner';
+import {Wrapper} from '../UI/Wrapper';
+
+const QuestionsEl = styled.div`
+  width: 80vw;
+  max-width: 40rem;
+  margin: 10vh 0;
+`
+
+const Question = styled.div`
+  margin: 1.5rem .5rem;
+  padding: 1rem .8rem;
+  background-color: rgba(0, 0, 0, .65);
+  text-align: center;
+  border-bottom: 2px solid orange;
+
+  h2 {
+    margin: 1rem .1rem;
+    color: green;
+  }
+`
+
+const SpinnerEl = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 export const Questions = () => {
-    const [questions, setQuestions] = useState<Array<Question>>([]);
+    const [questions, setQuestions] = useState<Array<questionModel>>([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -14,7 +44,7 @@ export const Questions = () => {
     const fetchQuestions = async () => {
         setLoading(true);
         const data = await getDocuments(Firebase.Questions);
-        const fetchedQuestion: Array<Question> = []
+        const fetchedQuestion: Array<questionModel> = []
 
         if (data) {
             data.forEach(doc => {
@@ -36,28 +66,27 @@ export const Questions = () => {
 
     const showFetchedQuestion = () => {
         return (
-            <>
+            <Wrapper>
                 {loading ?
-                    (<h1>Loading</h1>)
+                    (<SpinnerEl><Spinner size='10'/> </SpinnerEl>)
                     :
                     (
-                        <div>
+                        <QuestionsEl>
                             {questions.map(el =>
-                                <div key={el.id}>
-                                    <h2>{el.question}</h2>
+                                <Question key={el.id}>
+                                    <h2>Q: {el.question}</h2>
                                     <h3>{el.answers[el.correctAnswer].answer}</h3>
-                                </div>
+                                </Question>
                             )}
-                        </div>
+                        </QuestionsEl>
                     )
                 }
-            </>
+            </Wrapper>
         )
     }
 
     return (
         <>
-            <h1>Questions</h1>
             {showFetchedQuestion()}
         </>
     )

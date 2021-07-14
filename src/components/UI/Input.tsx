@@ -8,12 +8,14 @@ interface IProps {
     value?: string,
     placeholder?: string,
     backgroundColor?: string,
+    autoComplete?: string,
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
     onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 const InputEl = styled.input<IProps>`
-  width: 100%;
+  width: 90%;
+  max-width: 25rem;
   margin: .8rem;
   padding: 0.7rem;
   border: .15rem solid black;
@@ -25,6 +27,9 @@ const InputEl = styled.input<IProps>`
   outline: none;
   background-color: ${(props: IProps) => props.backgroundColor ? props.backgroundColor : 'white'};
   transition: all 0.4s;
+  ::placeholder{
+    color: rgba(0, 0, 0, .6);
+  }
 
   :hover, :focus {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
@@ -34,7 +39,7 @@ const InputEl = styled.input<IProps>`
   :focus {
     transform: scale(1.05);
     background-color: aqua;
-    border: .2rem solid black;
+    border: .2rem solid orange;
   }
 `
 
@@ -42,6 +47,7 @@ export const Input = (props: IProps) => {
     return (
         <>
             <InputEl
+                autoComplete={props.autoComplete}
                 type={props.type}
                 id={props.id}
                 name={props.name}

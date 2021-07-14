@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
 
 import {IUser} from '../../models/User';
 import {auth, getUserDocument} from '../firebase';
@@ -11,7 +10,9 @@ import {login} from '../../redux/user/userSlice';
 import {RedirectIfUserIsAuth} from './Helpers';
 import {Spinner} from '../UI/Spinner';
 import {changeStatus} from '../../redux/appSlice';
-import { AppStatus } from '../../models/Enums';
+import {AppStatus} from '../../models/Enums';
+import {LinkEl as Link} from '../UI/Link'
+import {Error} from '../UI/ErrorMesage';
 
 export const UserLogin = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -59,19 +60,24 @@ export const UserLogin = (): JSX.Element => {
             setError(error.message);
             dispatch(changeStatus(AppStatus.Idle))
         }
+        setFormData({
+            email: '',
+            password: ''
+        })
     };
     return (
         <>
             {RedirectIfUserIsAuth('/user')}
             <Form onSubmit={signInWithEmailAndPasswordHandler}>
                 <h1>Login</h1>
-                {error ? error : null}
+                <Error value={error && error }/>
                 <Input
-                    type='text'
+                    type='email'
                     name='email'
                     value={formData.email}
-                    onChange={updateField}
+                    autoComplete="new-password"
                     placeholder='Email'
+                    onChange={updateField}
                 /> <Input
                 type='password'
                 name='password'
@@ -84,10 +90,10 @@ export const UserLogin = (): JSX.Element => {
                     :
                     <Button
                         value='Submit'
-                        size='1.5rem'
+                        size='1.3rem'
                     />
                 }
-                <Link to="/register">Don't have an account?</Link>
+                <Link to='/register' value='Create an account'></Link>
             </Form>
         </>
     )

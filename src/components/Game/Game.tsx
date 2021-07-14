@@ -8,6 +8,7 @@ import {Form} from '../UI/Form';
 import {Answer, Question} from '../../models/Game';
 import {useFetchQuestions} from '../Question/useFetchQuestions';
 import {AppStatus} from '../../models/Enums';
+import { Spinner } from '../UI/Spinner';
 
 interface IProps {
     isChosen: boolean;
@@ -15,22 +16,39 @@ interface IProps {
 }
 
 const Div = styled.data`
-  font-size: 2rem;
+  font-size: 1.2rem;
+  text-align: center;
 
   h2 {
-    margin: 2rem;
+    padding: 2.rem;
+    margin: .5rem .2rem;
   }
 `
 
 const P = styled.p<IProps>`
-  padding: 1rem .4rem;
+  width: 100%;
+  padding: .8rem .3rem;
   border-radius: 2rem;
   text-align: center;
   margin: 2rem 0;
   cursor: pointer;
-  background-color: ${(props) => props.isChosen && '#00F275'};
-  background-color: ${(props) => props.correctAnswer && '#00A651'};
-  border: ${(props) => props.correctAnswer ? '2px solid #008C44' : '1px solid orange'};
+  background-color: ${(props) => props.isChosen && '#038C33'};
+  background-color: ${(props) => props.correctAnswer && '#05F240'};
+  border: ${(props) => props.correctAnswer ? '3px solid #37A63E' : '2px solid orange'};
+  font-weight: bold;
+  color: white;
+`
+
+const Result = styled.div`
+  margin: 1rem 1rem 0;
+  text-align: center;
+  
+  h1{
+    margin: .7rem;
+  }
+  h2{
+    margin: 1rem;
+  }
 `
 
 export const Game = () => {
@@ -43,7 +61,6 @@ export const Game = () => {
     useEffect(() => {
         dispatch(startGame({questionRandomIds, questions}))
     }, [questions]);
-
 
     const answeredQuestionHandler = (id: number): void => {
         dispatch(setChosenAnswer(id))
@@ -69,16 +86,20 @@ export const Game = () => {
                                 </P>
                             })}
                         </Div>
-                        <Button value='Submit' size='1.5rem'/>
+                        <Button  onClick={submitAnswerHandler} value='Submit' size='1.5rem'/>
                     </>
                 )
             }
         } else {
             return (
-                <>
-                    <h1>Awesome</h1>
-                    <h2>Your Score: {game.score}/{game.currentQuestion}</h2>
-                </>
+                <Result>
+                    <h1>{game.score}/{game.currentQuestion}</h1>
+                    {game.score > 2 ?
+                        (<h2>Awesome!</h2>):
+                        (<h2>Dont Give Up!</h2>)
+                    }
+                    <Button value='Next Game' size='1.5rem'/>
+                </Result>
             )
         }
     };
@@ -99,13 +120,15 @@ export const Game = () => {
     }
     return (
         <>
-            {app.status === AppStatus.Idle ?
-                <Form onSubmit={submitAnswerHandler}>
-                    {questionHandler()}
+                <Form >
+                    {app.status === AppStatus.Idle ?
+                        (questionHandler())
+                        :
+                        <Spinner size='10'/>
+                    }
+
                 </Form>
-                :
-                <h1>Loading...</h1>
-            }
+
         </>
     )
 }

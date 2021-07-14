@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import { AppStatus } from '../../models/Enums';
+import styled from 'styled-components';
+
+import {AppStatus} from '../../models/Enums';
 import {changeStatus} from '../../redux/appSlice';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {generateQuestionDocument} from '../firebase';
@@ -7,6 +9,34 @@ import {Button} from '../UI/Button';
 import {Form} from '../UI/Form';
 import {Input} from '../UI/Input';
 import {Spinner} from '../UI/Spinner';
+
+const Answers = styled.div`
+  text-align: center;
+  width: 100%;
+`
+
+const CorrectAnswers = styled(Answers)`
+  width: 75%;
+  padding: .7rem .5rem;
+  background-color: rgba(0, 0, 0, .65);
+  border-radius: 2rem;
+  margin: 1.5rem 0 1rem;
+
+  h2 {
+    color: green;
+  }
+
+  label {
+    display: flex;
+    justify-content: center;
+    margin: .7rem .5rem;
+  }
+
+  p {
+    margin: 0 .5rem;
+    font-weight: 600;
+  }
+`
 
 export const AddQuestion = () => {
     const dispatch = useAppDispatch();
@@ -49,36 +79,40 @@ export const AddQuestion = () => {
     return (
         <>
             <Form onSubmit={onSubmitHandler}>
-                <h1>Add question</h1>
-                <Input type='text' name="question" onChange={setQuestionHandler}/>
-                <div>
+                <h1>Add Question</h1>
+                <Input type='text' name="question" onChange={setQuestionHandler} autoComplete='off'/>
+                <Answers>
                     <h2>Answers</h2>
-                    <Input type='text' id='0' key={0} name="0" placeholder='1' onChange={addAnswersHandler}/>
-                    <Input type='text' id='1' key={1} name="1" placeholder='2' onChange={addAnswersHandler}/>
-                    <Input type='text' id='2' key={2} name="2" placeholder='3' onChange={addAnswersHandler}/>
-                </div>
-                <h2>Correct Answer: </h2>
-                <div>
+                    <Input type='text' id='0' key={0} name="0" placeholder='1' onChange={addAnswersHandler}
+                           autoComplete='off'/>
+                    <Input type='text' id='1' key={1} name="1" placeholder='2' onChange={addAnswersHandler}
+                           autoComplete='off'/>
+                    <Input type='text' id='2' key={2} name="2" placeholder='3' onChange={addAnswersHandler}
+                           autoComplete='off'/>
+                </Answers>
+                <CorrectAnswers>
+                    <h2>Correct Answer </h2>
                     {choices.map(el => {
                         return (
                             <label key={el.id} htmlFor={el.value}>
-                                <input type="radio"
-                                       value={el.id}
-                                       key={el.id}
-                                       id={el.value}
-                                       name="correctAnswer"
-                                       onChange={setQuestionHandler}
+                                <input
+                                    type="radio"
+                                    value={el.id}
+                                    key={el.id}
+                                    id={el.value}
+                                    name="correctAnswer"
+                                    onChange={setQuestionHandler}
                                 />
-                                {el.value}
+                                <p>{el.value}</p>
                             </label>
                         )
                     })}
-                </div>
+                </CorrectAnswers>
                 {app.status === AppStatus.Loading ?
                     <Spinner/>
                     :
                     <Button
-                        value='Add'
+                        value='Submit'
                         size='1.5rem'
                     />
                 }

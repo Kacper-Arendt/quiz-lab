@@ -7,7 +7,6 @@ export interface Question {
 
 export interface AnsweredQuestion  extends Question{
     chosenAnswer: number | null,
-
 }
 
 export interface Answer {

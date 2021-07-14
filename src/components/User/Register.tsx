@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {auth, generateUserDocument} from '../firebase';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
+import styled from 'styled-components';
 
 import {INewUser} from '../../models/User';
 import {Button} from '../UI/Button';
@@ -10,7 +11,14 @@ import {RedirectIfUserIsAuth} from './Helpers';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {changeStatus} from '../../redux/appSlice';
 import {Spinner} from '../UI/Spinner';
-import { AppStatus } from '../../models/Enums';
+import {AppStatus} from '../../models/Enums';
+import {LinkEl as Link} from '../UI/Link'
+import {Error} from '../UI/ErrorMesage';
+
+const H1 = styled.h1`
+  margin-bottom: 1rem;
+  font-size: 2.4rem;
+`
 
 export const Register = (): JSX.Element => {
     const dispatch = useAppDispatch();
@@ -22,7 +30,7 @@ export const Register = (): JSX.Element => {
         password: '',
         name: ''
     });
-    const [errorMessage, setErrorMessage] = useState<string>();
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     const updateField = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setUser({
@@ -63,36 +71,38 @@ export const Register = (): JSX.Element => {
         <>
             {RedirectIfUserIsAuth('/user')}
             <Form onSubmit={createUserWithEmailAndPasswordHandler}>
-                <h1>Register</h1>
-                {errorMessage ? errorMessage : null}
+                <H1>Register</H1>
+                <Error value={errorMessage && errorMessage }/>
                 <Input
-                    type='text'
+                    type='email'
                     name='email'
                     value={user.email}
-                    onChange={updateField}
+                    autoComplete="new-password"
                     placeholder='Email'
+                    onChange={updateField}
                 /> <Input
                 type='password'
                 name='password'
                 value={user.password}
-                onChange={updateField}
                 placeholder='Password'
+                onChange={updateField}
             /> <Input
                 type='text'
                 name='name'
                 value={user.name}
-                onChange={updateField}
+                autoComplete="new-password"
                 placeholder='Name'
+                onChange={updateField}
             />
                 {app.status === AppStatus.Loading ?
                     <Spinner/>
                     :
                     <Button
                         value='Submit'
-                        size='1.5rem'
+                        size='1.3rem'
                     />
                 }
-                <Link to="/login">Already have an account?</Link>
+                <Link to='/login' value='Already have an account?'></Link>
             </Form>
         </>
     )
