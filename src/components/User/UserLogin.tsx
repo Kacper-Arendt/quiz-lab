@@ -101,7 +101,7 @@ export const UserLogin = (): JSX.Element => {
                     register={{...register('password', {required: true})}}
                     onChange={updateField}
                 />
-                {errors.email && <Error value={errors.password.message}/>}
+                {errors.password && <Error value={errors.password.message}/>}
                 {app.status === AppStatus.Loading ?
                     <Spinner/>
                     :

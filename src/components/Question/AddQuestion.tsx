@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import {AppStatus} from '../../models/Enums';
 import {changeStatus} from '../../redux/appSlice';
@@ -9,6 +12,7 @@ import {Button} from '../UI/Button';
 import {Form} from '../UI/Form';
 import {Input} from '../UI/Input';
 import {Spinner} from '../UI/Spinner';
+import {Error} from '../UI/ErrorMesage';
 
 const Answers = styled.div`
   text-align: center;
@@ -37,10 +41,22 @@ const CorrectAnswers = styled(Answers)`
     font-weight: 600;
   }
 `
+const schema = yup.object().shape({
+    question: yup.string().min(5, 'Question should be at least 5 characters').max(100, 'Too long').required('Question is required'),
+    correctAnswer: yup.number().nullable().required('Correct Answer is required'),
+    0: yup.string().min(3, 'Answer 1 should be at least 3 characters').max(25, 'Too long').required('Answer is required'),
+    1: yup.string().min(3, 'Answer 2 should be at least 3 characters').max(25, 'Too long').required('Answer is required'),
+    2: yup.string().min(3, `Answer 3 should be at least 3 characters`).max(25, 'Too long').required('Answer is required'),
+
+});
 
 export const AddQuestion = () => {
     const dispatch = useAppDispatch();
     const {app} = useAppSelector(state => state);
+    const {register, handleSubmit, formState: {errors, isDirty, isValid}} = useForm({
+        resolver: yupResolver(schema),
+        mode: "onBlur"
+    });
     const choices = [{id: 0, value: 'Answer 1'}, {id: 1, value: 'Answer 2'}, {id: 2, value: 'Answer 3'}];
     const [question, setQuestion] = useState<{ question: string, correctAnswer: number, answers: Array<object> }>();
     const [answers, setAnswers] = useState<any[]>([]);
@@ -65,7 +81,6 @@ export const AddQuestion = () => {
     }
 
     const onSubmitHandler = async (e: React.SyntheticEvent) => {
-        e.preventDefault();
         dispatch(changeStatus(AppStatus.Loading))
         try {
             await generateQuestionDocument(question);
@@ -78,17 +93,45 @@ export const AddQuestion = () => {
 
     return (
         <>
-            <Form onSubmit={onSubmitHandler}>
+            <Form onSubmitHandler={handleSubmit(onSubmitHandler)}>
                 <h1>Add Question</h1>
-                <Input type='text' name="question" onChange={setQuestionHandler} autoComplete='off'/>
+                <Input
+                    type='text'
+                    name="question"
+                    autoComplete='off'
+                    register={{...register('question', {required: true})}}
+                    onChange={setQuestionHandler}
+                />
+                {errors.question && <Error value={errors.question.message}/>}
                 <Answers>
                     <h2>Answers</h2>
-                    <Input type='text' id='0' key={0} name="0" placeholder='1' onChange={addAnswersHandler}
-                           autoComplete='off'/>
-                    <Input type='text' id='1' key={1} name="1" placeholder='2' onChange={addAnswersHandler}
-                           autoComplete='off'/>
-                    <Input type='text' id='2' key={2} name="2" placeholder='3' onChange={addAnswersHandler}
-                           autoComplete='off'/>
+                    <Input
+                        type='text'
+                        id='0'
+                        key={0} name="0"
+                        placeholder='1'
+                        autoComplete='off'
+                        register={{...register('0', {required: true})}} onChange={addAnswersHandler}
+                    />
+                    {errors[0] && <Error value={errors[0].message}/>}
+                    <Input
+                        type='text'
+                        id='1' key={1}
+                        name="1"
+                        placeholder='2'
+                        autoComplete='off'
+                        register={{...register('1', {required: true})}} onChange={addAnswersHandler}
+                    />
+                    {errors[1] && <Error value={errors[1].message}/>}
+                    <Input
+                        type='text'
+                        id='2' key={2}
+                        name="2"
+                        placeholder='3'
+                        autoComplete='off'
+                        register={{...register('2', {required: true})}} onChange={addAnswersHandler}
+                    />
+                    {errors[2] && <Error value={errors[2].message}/>}
                 </Answers>
                 <CorrectAnswers>
                     <h2>Correct Answer </h2>
@@ -100,13 +143,15 @@ export const AddQuestion = () => {
                                     value={el.id}
                                     key={el.id}
                                     id={el.value}
-                                    name="correctAnswer"
+                                    {...register('correctAnswer', {required: true})}
                                     onChange={setQuestionHandler}
                                 />
                                 <p>{el.value}</p>
                             </label>
                         )
                     })}
+                    {errors.correctAnswer && <Error value={errors.correctAnswer.message}/>}
+
                 </CorrectAnswers>
                 {app.status === AppStatus.Loading ?
                     <Spinner/>
@@ -114,6 +159,7 @@ export const AddQuestion = () => {
                     <Button
                         value='Submit'
                         size='1.5rem'
+                        disabled={!isValid || !isDirty}
                     />
                 }
             </Form>
