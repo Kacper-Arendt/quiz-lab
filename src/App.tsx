@@ -15,6 +15,7 @@ import {Questions} from "./components/Question/Questions";
 import {Home} from "./components/HomePage/Home";
 import background from './images/question-mark-background.jpg'
 import {device} from './models/MediaQueries';
+import {Menu} from "./components/UI/Menu/Menu";
 
 const GlobalStyles = createGlobalStyle`
   *,
@@ -36,13 +37,11 @@ const GlobalStyles = createGlobalStyle`
     -o-background-size: cover;
     background-size: cover;
 
-   @media${device.mobileM} {
-     font-size: 71.25%;
-   }
-  @media${device.tablet} {
-     font-size: 81.25%;
-   }
-  @media${device.laptopL} {
+  @media${device.mobileM} {
+    font-size: 71.25%;
+  } @media${device.tablet} {
+    font-size: 81.25%;
+  } @media${device.laptopL} {
     font-size: 100%;
   }
   }
@@ -91,6 +90,7 @@ function App() {
     return (
         <>
             <GlobalStyles/>
+            <Menu/>
             <Router>
                 <Switch>
                     <Route path='/user' component={UserProfile}/>
