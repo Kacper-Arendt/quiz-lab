@@ -44,9 +44,9 @@ const CorrectAnswers = styled(Answers)`
 const schema = yup.object().shape({
     question: yup.string().min(5, 'Question should be at least 5 characters').max(100, 'Too long').required('Question is required'),
     correctAnswer: yup.number().nullable().required('Correct Answer is required'),
-    0: yup.string().min(3, 'Answer 1 should be at least 3 characters').max(25, 'Too long').required('Answer is required'),
-    1: yup.string().min(3, 'Answer 2 should be at least 3 characters').max(25, 'Too long').required('Answer is required'),
-    2: yup.string().min(3, `Answer 3 should be at least 3 characters`).max(25, 'Too long').required('Answer is required'),
+    0: yup.string().min(3, 'Minimum of 3 characters').max(25, 'Maximum of 25 characters').required('Answer is required'),
+    1: yup.string().min(3, 'Minimum of 3 characters').max(25, 'Maximum of 25 characters').required('Answer is required'),
+    2: yup.string().min(3, `Minimum of 3 characters`).max(25, 'Maximum of 25 characters').required('Answer is required'),
 
 });
 
@@ -111,7 +111,8 @@ export const AddQuestion = () => {
                         key={0} name="0"
                         placeholder='1'
                         autoComplete='off'
-                        register={{...register('0', {required: true})}} onChange={addAnswersHandler}
+                        register={{...register('0', {required: true})}}
+                        onChange={addAnswersHandler}
                     />
                     {errors[0] && <Error value={errors[0].message}/>}
                     <Input
@@ -120,7 +121,8 @@ export const AddQuestion = () => {
                         name="1"
                         placeholder='2'
                         autoComplete='off'
-                        register={{...register('1', {required: true})}} onChange={addAnswersHandler}
+                        register={{...register('1', {required: true})}}
+                        onChange={addAnswersHandler}
                     />
                     {errors[1] && <Error value={errors[1].message}/>}
                     <Input
@@ -129,7 +131,8 @@ export const AddQuestion = () => {
                         name="2"
                         placeholder='3'
                         autoComplete='off'
-                        register={{...register('2', {required: true})}} onChange={addAnswersHandler}
+                        register={{...register('2', {required: true})}}
+                        onChange={addAnswersHandler}
                     />
                     {errors[2] && <Error value={errors[2].message}/>}
                 </Answers>
