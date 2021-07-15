@@ -5,6 +5,7 @@ interface IProps {
     value?: string,
     size?: string,
     backgroundColor?: string,
+    disabled?: boolean,
     onClick?: (e: React.SyntheticEvent) => void,
 }
 
@@ -18,12 +19,19 @@ const ButtonEl = styled.button<IProps>`
   background-color: ${(props) => props.backgroundColor ? props.backgroundColor : 'green'};
   letter-spacing: 1.2px;
   font-weight: bold;
+  
+  
+  :disabled{
+    background-color: grey;
+    
+  }
 `
 
 export const Button = (props: IProps) => {
     return (
         <ButtonEl
             size={props.size}
+            disabled={props.disabled}
             onClick={props.onClick}
         >
             {props.value}

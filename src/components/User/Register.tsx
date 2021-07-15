@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import {auth, generateUserDocument} from '../firebase';
 import {useHistory} from 'react-router-dom';
 import styled from 'styled-components';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import {INewUser} from '../../models/User';
 import {Button} from '../UI/Button';
@@ -18,16 +21,28 @@ import {Error} from '../UI/ErrorMesage';
 const H1 = styled.h1`
   margin-bottom: 1rem;
   font-size: 2.4rem;
-`
+`;
+
+const schema = yup.object().shape({
+    email: yup.string().email().required('Email is Required'),
+    password: yup.string().min(5, 'Password should be at least 3 characters').max(15),
+    confirmPassword: yup.string().oneOf([yup.ref('password'), null]),
+    name: yup.string().min(3,'Name should be at least 3 characters').max(12, 'Too long').required('Name is Required'),
+})
 
 export const Register = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const {app} = useAppSelector(state => state);
     const history = useHistory();
+    const {register, handleSubmit, formState: {errors, isDirty, isValid}} = useForm({
+        resolver: yupResolver(schema),
+        mode: "onBlur"
+    });
     const [user, setUser] = useState<INewUser>({
         id: '',
         email: '',
         password: '',
+        confirmPassword: '',
         name: ''
     });
     const [errorMessage, setErrorMessage] = useState<string>('');
@@ -40,8 +55,7 @@ export const Register = (): JSX.Element => {
     };
 
     const createUserWithEmailAndPasswordHandler =
-        async (e: React.SyntheticEvent) => {
-            e.preventDefault();
+        async () => {
             dispatch(changeStatus(AppStatus.Loading))
             try {
                 const createUser = await auth.createUserWithEmailAndPassword(user.email, user.password);
@@ -63,6 +77,7 @@ export const Register = (): JSX.Element => {
                 id: '',
                 email: '',
                 password: '',
+                confirmPassword: '',
                 name: ''
             })
         };
@@ -70,36 +85,54 @@ export const Register = (): JSX.Element => {
     return (
         <>
             {RedirectIfUserIsAuth('/user')}
-            <Form onSubmit={createUserWithEmailAndPasswordHandler}>
+            <Form onSubmitHandler={handleSubmit(createUserWithEmailAndPasswordHandler)}>
                 <H1>Register</H1>
-                <Error value={errorMessage && errorMessage }/>
+                <Error value={errorMessage && errorMessage}/>
                 <Input
                     type='email'
                     name='email'
                     value={user.email}
                     autoComplete="new-password"
-                    placeholder='Email'
+                    placeholder='Email...'
+                    register={{...register('email', {required: true})}}
                     onChange={updateField}
-                /> <Input
-                type='password'
-                name='password'
-                value={user.password}
-                placeholder='Password'
-                onChange={updateField}
-            /> <Input
-                type='text'
-                name='name'
-                value={user.name}
-                autoComplete="new-password"
-                placeholder='Name'
-                onChange={updateField}
-            />
+                />
+                {errors.email && <Error value={errors.email.message} />}
+                <Input
+                    type='password'
+                    name='password'
+                    value={user.password}
+                    placeholder='Password...'
+                    register={{...register('password', {required: true})}}
+                    onChange={updateField}
+                />
+                {errors.password && <Error value={errors.password.message} />}
+                <Input
+                    type='password'
+                    name='confirmPassword'
+                    value={user.confirmPassword}
+                    placeholder='Confirm Password...'
+                    register={{...register('confirmPassword', {required: true})}}
+                    onChange={updateField}
+                />
+                {errors.confirmPassword &&  <Error value={errors.confirmPassword.message}/>}
+                <Input
+                    type='text'
+                    name='name'
+                    value={user.name}
+                    autoComplete="new-password"
+                    placeholder='Name...'
+                    register={{...register('name', {required: true})}}
+                    onChange={updateField}
+                />
+                {errors.name && <Error value={errors.name.message}/>}
                 {app.status === AppStatus.Loading ?
                     <Spinner/>
                     :
                     <Button
                         value='Submit'
                         size='1.3rem'
+                        disabled={!isValid || !isDirty}
                     />
                 }
                 <Link to='/login' value='Already have an account?'></Link>

@@ -11,6 +11,7 @@ interface IProps {
     autoComplete?: string,
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void,
     onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    register?: any
 }
 
 const InputEl = styled.input<IProps>`
@@ -27,7 +28,8 @@ const InputEl = styled.input<IProps>`
   outline: none;
   background-color: ${(props: IProps) => props.backgroundColor ? props.backgroundColor : 'white'};
   transition: all 0.4s;
-  ::placeholder{
+
+  ::placeholder {
     color: rgba(0, 0, 0, .6);
   }
 
@@ -52,10 +54,12 @@ export const Input = (props: IProps) => {
                 id={props.id}
                 name={props.name}
                 value={props.value}
-                onChange={props.onChange}
                 onBlur={props.onChange}
                 placeholder={props.placeholder}
                 backgroundColor={props.backgroundColor}
+                {...props.register}
+                onChange={props.onChange}
+
             />
         </>
     )
