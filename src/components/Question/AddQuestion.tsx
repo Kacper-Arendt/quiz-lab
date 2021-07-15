@@ -47,7 +47,6 @@ const schema = yup.object().shape({
     0: yup.string().min(3, 'Minimum of 3 characters').max(25, 'Maximum of 25 characters').required('Answer is required'),
     1: yup.string().min(3, 'Minimum of 3 characters').max(25, 'Maximum of 25 characters').required('Answer is required'),
     2: yup.string().min(3, `Minimum of 3 characters`).max(25, 'Maximum of 25 characters').required('Answer is required'),
-
 });
 
 export const AddQuestion = () => {
@@ -55,7 +54,7 @@ export const AddQuestion = () => {
     const {app} = useAppSelector(state => state);
     const {register, handleSubmit, formState: {errors, isDirty, isValid}} = useForm({
         resolver: yupResolver(schema),
-        mode: "onBlur"
+        mode: "onBlur",
     });
     const choices = [{id: 0, value: 'Answer 1'}, {id: 1, value: 'Answer 2'}, {id: 2, value: 'Answer 3'}];
     const [question, setQuestion] = useState<{ question: string, correctAnswer: number, answers: Array<object> }>();

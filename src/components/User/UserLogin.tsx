@@ -28,7 +28,7 @@ export const UserLogin = (): JSX.Element => {
     const {app} = useAppSelector(state => state);
     const {register, handleSubmit, formState: {errors, isDirty, isValid}} = useForm({
         resolver: yupResolver(schema),
-        mode: "onBlur"
+        mode: "onBlur",
     });
     const [formData, setFormData] = useState({email: '', password: ''});
     const [error, setError] = useState('');
