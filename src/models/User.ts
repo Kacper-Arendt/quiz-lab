@@ -7,4 +7,5 @@ export interface IUser {
 
 export interface INewUser extends IUser {
     password: string,
+    confirmPassword: string,
 };

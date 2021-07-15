@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
  const P = styled.p`
-    color: red;
-    margin: .8rem 0;
+    margin: 0 .2rem .2rem;
     text-align: center;
-    line-height: 140%;
+    line-height: 120%;
 `
 
 export const Error = (props: { value: string | null}) => {
