@@ -5,7 +5,7 @@ import {createGlobalStyle} from 'styled-components'
 import {Register} from './components/User/Register';
 import {UserLogin} from './components/User/UserLogin';
 import {UserProfile} from './components/User/UserProfile';
-import {useAppDispatch} from './redux/hooks';
+import {useAppDispatch, useAppSelector} from './redux/hooks';
 import {auth, getUserDocument} from "./components/firebase";
 import {login} from "./redux/user/userSlice";
 import {IUser} from "./models/User";
@@ -15,8 +15,13 @@ import {Questions} from "./components/Question/Questions";
 import {Home} from "./components/HomePage/Home";
 import background from './images/question-mark-background.jpg'
 import {device} from './models/MediaQueries';
+import {Menu} from "./components/UI/Menu/Menu";
 
-const GlobalStyles = createGlobalStyle`
+interface Iprops {
+    isMenuOpen: boolean,
+}
+
+const GlobalStyles = createGlobalStyle<Iprops>`
   *,
   *::after,
   *::before {
@@ -36,13 +41,11 @@ const GlobalStyles = createGlobalStyle`
     -o-background-size: cover;
     background-size: cover;
 
-   @media${device.mobileM} {
-     font-size: 71.25%;
-   }
-  @media${device.tablet} {
-     font-size: 81.25%;
-   }
-  @media${device.laptopL} {
+  @media${device.mobileM} {
+    font-size: 71.25%;
+  } @media${device.tablet} {
+    font-size: 81.25%;
+  } @media${device.laptopL} {
     font-size: 100%;
   }
   }
@@ -52,11 +55,13 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     letter-spacing: 1.5px;
     color: white;
+    overflow: ${(props: Iprops) => props.isMenuOpen ? 'hidden' : 'visible'};
   }
 `
 
 function App() {
     const dispatch = useAppDispatch();
+    const {app} = useAppSelector(state => state);
     const [fetchedUser, setFetchedUser] = useState({
         id: '',
         name: '',
@@ -90,8 +95,9 @@ function App() {
 
     return (
         <>
-            <GlobalStyles/>
+            <GlobalStyles isMenuOpen={app.isMenuOpen!} />
             <Router>
+                <Menu/>
                 <Switch>
                     <Route path='/user' component={UserProfile}/>
                     <Route path="/register" component={Register}/>

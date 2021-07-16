@@ -10,7 +10,7 @@ export const Div = styled.div<IProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: ${(props: IProps) => props.margin && props.margin};
+  margin: ${(props: IProps) => props.margin ? props.margin : '10vh 0 0'};
 
 @media${device.laptop} {
   flex-direction: row;

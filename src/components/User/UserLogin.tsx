@@ -26,7 +26,7 @@ const schema = yup.object().shape({
 export const UserLogin = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const {app} = useAppSelector(state => state);
-    const {register, handleSubmit, formState: {errors, isDirty, isValid}} = useForm({
+    const {register, handleSubmit, formState: {errors}} = useForm({
         resolver: yupResolver(schema),
         mode: "onBlur",
     });
@@ -108,7 +108,6 @@ export const UserLogin = (): JSX.Element => {
                     <Button
                         value='Submit'
                         size='1.3rem'
-                        disabled={!isValid || !isDirty}
                     />
                 }
                 <Link to='/register' value='Create an account'></Link>
