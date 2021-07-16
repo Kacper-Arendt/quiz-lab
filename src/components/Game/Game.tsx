@@ -9,6 +9,7 @@ import {Answer, Question} from '../../models/Game';
 import {useFetchQuestions} from '../Question/useFetchQuestions';
 import {AppStatus} from '../../models/Enums';
 import { Spinner } from '../UI/Spinner';
+import { ProgressBar } from './ProgressBar';
 
 interface IProps {
     isChosen: boolean;
@@ -74,6 +75,7 @@ export const Game = () => {
 
                 return (
                     <>
+                        <ProgressBar currentQuestion = {currentQuestion} />
                         <Div>
                             <h2>{game.questions[currentQuestion].question}</h2>
                             {selectedAnswerId.map(el => {
