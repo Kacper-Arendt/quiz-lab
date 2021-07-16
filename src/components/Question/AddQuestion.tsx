@@ -44,9 +44,9 @@ const CorrectAnswers = styled(Answers)`
 const schema = yup.object().shape({
     question: yup.string().min(5, 'Question should be at least 5 characters').max(100, 'Too long').required('Question is required'),
     correctAnswer: yup.number().nullable().required('Correct Answer is required'),
-    0: yup.string().min(3, 'Minimum of 3 characters').max(25, 'Maximum of 25 characters').required('Answer is required'),
-    1: yup.string().min(3, 'Minimum of 3 characters').max(25, 'Maximum of 25 characters').required('Answer is required'),
-    2: yup.string().min(3, `Minimum of 3 characters`).max(25, 'Maximum of 25 characters').required('Answer is required'),
+    0: yup.string().min(2, 'Minimum of 2 characters').max(35, 'Maximum of 35 characters').required('Answer is required'),
+    1: yup.string().min(2, 'Minimum of 2 characters').max(35, 'Maximum of 35 characters').required('Answer is required'),
+    2: yup.string().min(2, `Minimum of 2 characters`).max(35, 'Maximum of 35 characters').required('Answer is required'),
 });
 
 export const AddQuestion = () => {
