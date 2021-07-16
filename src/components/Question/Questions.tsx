@@ -8,9 +8,9 @@ import {Spinner} from '../UI/Spinner';
 import {Wrapper} from '../UI/Wrapper';
 
 const QuestionsEl = styled.div`
-  width: 80vw;
+  width: 75vw;
   max-width: 40rem;
-  margin: 10vh 0;
+  margin-bottom: 5vh;
 `
 
 const Question = styled.div`
