@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { device } from '../../../models/MediaQueries';
+import {device} from '../../../models/MediaQueries';
 import {MenuIProps} from './Burger';
+import {Link } from 'react-router-dom'
 
 export const Nav = styled.nav<MenuIProps>`
   display: flex;
@@ -19,33 +20,34 @@ export const Nav = styled.nav<MenuIProps>`
   transform: ${(props: MenuIProps) => props.isOpen ? 'translateX(0)' : 'translateX(-100%)'};
   font-size: 2rem;
 
-  a {
-    text-transform: uppercase;
-    padding: 2rem 0;
-    font-weight: bold;
-    letter-spacing: 0.5rem;
-    text-decoration: none;
-    text-align: center;
-    transition: color 0.2s linear;
-    color: black;
-
-    &:hover {
-      color: white;
-    }
-  }
-
 @media${device.tablet} {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 `;
 
+const StyledLink = styled(Link)`
+  padding: 2rem 0;
+  margin: 0 auto;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 0.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s linear;
+
+  &:hover {
+    color: white;
+  }`
+
 export const Navigation = (props: MenuIProps) => {
+
     return (
         <Nav isOpen={props.isOpen}>
-            <a href="/">Home</a>
-            <a href="/game">Game</a>
-            <a href="/user">Profile</a>
-            <a href="/questions">Questions</a>
+            <StyledLink to='/game' onClick={props.setIsOpen}>Game</StyledLink>
+            <StyledLink to='/user' onClick={props.setIsOpen}>Profile</StyledLink>
+            <StyledLink to='/questions' onClick={props.setIsOpen}>questions</StyledLink>
+            <StyledLink to='/' onClick={props.setIsOpen}>Home</StyledLink>
         </Nav>
     )
 }

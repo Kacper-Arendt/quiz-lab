@@ -12,7 +12,7 @@ export const Menu = () => {
     return (
         <div>
             <BurgerEl isOpen={app.isMenuOpen!} setIsOpen={() => dispatch(toggleMenu())}/>
-            <Navigation isOpen={app.isMenuOpen!} />
+            <Navigation isOpen={app.isMenuOpen!} setIsOpen={() => dispatch(toggleMenu())}/>
         </div>
     )
-}
+};
