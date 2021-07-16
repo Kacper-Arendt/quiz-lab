@@ -75,7 +75,7 @@ export const Game = () => {
 
                 return (
                     <>
-                        <ProgressBar />
+                        <ProgressBar currentQuestion = {currentQuestion} />
                         <Div>
                             <h2>{game.questions[currentQuestion].question}</h2>
                             {selectedAnswerId.map(el => {

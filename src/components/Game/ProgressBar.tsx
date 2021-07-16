@@ -1,24 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 
+interface Iprops {
+    currentQuestion: number,
+}
 
 const Bar = styled.div`
-  width: 85%;
+  width: 100%;
   background: white;
   height: 1.5rem;
-  border: orange .25rem solid;
+  border-radius: 20rem;
+
 `
-const Progress = styled.div`
-    width: 20%;
-    background: red;
-    height: 100%;
+const Progress = styled.div <Iprops>`
+  width: ${(props: Iprops) => props.currentQuestion && props.currentQuestion + '%'};
+  background: #84BF04;
+  height: 100%;
+  border-radius: 20rem;
+  
+
 `
 
-export const ProgressBar = () => {
+export const ProgressBar = (props: Iprops) => {
+    const progress = props.currentQuestion / 5 * 100;
+
     return (
         <>
             <Bar>
-                <Progress/>
+                <Progress currentQuestion={progress}>
+                </Progress>
             </Bar>
         </>
     )
