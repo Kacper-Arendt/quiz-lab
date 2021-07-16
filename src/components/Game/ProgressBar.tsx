@@ -8,8 +8,9 @@ interface Iprops {
 const Bar = styled.div`
   width: 100%;
   background: white;
-  height: 1.5rem;
+  height: 1rem;
   border-radius: 20rem;
+  margin: 0 0 1.5rem;
 
 `
 const Progress = styled.div <Iprops>`
@@ -17,7 +18,7 @@ const Progress = styled.div <Iprops>`
   background: #84BF04;
   height: 100%;
   border-radius: 20rem;
-  
+
 
 `
 
@@ -27,8 +28,7 @@ export const ProgressBar = (props: Iprops) => {
     return (
         <>
             <Bar>
-                <Progress currentQuestion={progress}>
-                </Progress>
+                <Progress currentQuestion={progress} />
             </Bar>
         </>
     )
