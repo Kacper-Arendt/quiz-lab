@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {toggleMenu} from '../../../redux/appSlice';
+import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
 import {BurgerEl} from './Burger';
 import {Navigation} from './Navigation';
 
-export const Menu = () => {
-    const [open, setOpen] = useState<boolean>(false);
 
-    const isOpenHandler = () => {
-        setOpen(!open)
-    }
+export const Menu = () => {
+    const {app} = useAppSelector(state => state);
+    const dispatch = useAppDispatch();
 
     return (
         <div>
-            <BurgerEl isOpen={open} setIsOpen={isOpenHandler}/>
-            <Navigation isOpen={open} setIsOpen={isOpenHandler}/>
+            <BurgerEl isOpen={app.isMenuOpen!} setIsOpen={() => dispatch(toggleMenu())}/>
+            <Navigation isOpen={app.isMenuOpen!} />
         </div>
     )
 }
