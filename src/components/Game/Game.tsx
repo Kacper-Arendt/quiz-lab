@@ -8,8 +8,9 @@ import {Form} from '../UI/Form';
 import {Answer, Question} from '../../models/Game';
 import {useFetchQuestions} from '../Question/useFetchQuestions';
 import {AppStatus} from '../../models/Enums';
-import { Spinner } from '../UI/Spinner';
-import { ProgressBar } from './ProgressBar';
+import {Spinner} from '../UI/Spinner';
+import {ProgressBar} from './ProgressBar';
+import {useHistory} from 'react-router-dom';
 
 interface IProps {
     isChosen: boolean;
@@ -21,7 +22,7 @@ const Div = styled.data`
   text-align: center;
 
   h2 {
-    padding: 2.rem;
+    padding: 2 .rem;
     margin: .5rem .2rem;
   }
 `
@@ -43,11 +44,12 @@ const P = styled.p<IProps>`
 const Result = styled.div`
   margin: 1rem 1rem 0;
   text-align: center;
-  
-  h1{
+
+  h1 {
     margin: .7rem;
   }
-  h2{
+
+  h2 {
     margin: 1rem;
   }
 `
@@ -58,6 +60,7 @@ export const Game = () => {
     const questionRandomIds: Array<number> = [];
     const [correctAnswer, setCorrectAnswer] = useState<number | null>(null);
     const questions: Array<Question> = useFetchQuestions();
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(startGame({questionRandomIds, questions}))
@@ -75,7 +78,7 @@ export const Game = () => {
 
                 return (
                     <>
-                        <ProgressBar currentQuestion = {currentQuestion} />
+                        <ProgressBar currentQuestion={currentQuestion}/>
                         <Div>
                             <h2>{game.questions[currentQuestion].question}</h2>
                             {selectedAnswerId.map(el => {
@@ -88,7 +91,7 @@ export const Game = () => {
                                 </P>
                             })}
                         </Div>
-                        <Button  onClick={submitAnswerHandler} value='Submit' size='1.5rem'/>
+                        <Button onClick={submitAnswerHandler} value='Submit' size='1.5rem'/>
                     </>
                 )
             }
@@ -97,10 +100,10 @@ export const Game = () => {
                 <Result>
                     <h1>{game.score}/{game.currentQuestion}</h1>
                     {game.score > 2 ?
-                        (<h2>Awesome!</h2>):
+                        (<h2>Awesome!</h2>) :
                         (<h2>Dont Give Up!</h2>)
                     }
-                    <Button value='Next Game' size='1.5rem'/>
+                    <Button value='Next Game' size='1.5rem' onClick={() =>history.push('/game')}/>
                 </Result>
             )
         }
@@ -122,14 +125,14 @@ export const Game = () => {
     }
     return (
         <>
-                <Form >
-                    {app.status === AppStatus.Idle ?
-                        (questionHandler())
-                        :
-                        <Spinner size='10'/>
-                    }
+            <Form>
+                {app.status === AppStatus.Idle ?
+                    (questionHandler())
+                    :
+                    <Spinner size='10'/>
+                }
 
-                </Form>
+            </Form>
 
         </>
     )
