@@ -32,12 +32,14 @@ export const generateUserDocument = async (user: IUser, id: string) => {
     const userRef = firestore.doc(`users/${id}`);
     const snapshot = await userRef.get();
     if (!snapshot.exists) {
-        const {email, name} = user;
+        const {email, name, totalGames, pointsScored} = user;
         try {
             await userRef.set({
                 id,
                 email,
                 name,
+                totalGames,
+                pointsScored,
             });
         } catch (error) {
             console.error("Error creating user document", error);

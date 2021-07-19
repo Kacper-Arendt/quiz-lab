@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 interface IProps {
     to: string,
-    value: string
+    value: string,
 }
 
 const StyledLink = styled(Link)`
@@ -14,8 +14,8 @@ const StyledLink = styled(Link)`
   color: white;
   text-decoration: none;
   transition: all .4s;
-  
-  :hover{
+
+  :hover {
     transform: scaleX(1.1);
     color: #888;
   }

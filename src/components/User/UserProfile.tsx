@@ -56,6 +56,12 @@ const About = styled.div`
     border-radius: 10rem;
   }
 
+  span {
+    color: green;
+    font-weight: bold;
+  }
+}
+
 @media${device.tablet} {
   max-width: 35rem;
 `
@@ -89,6 +95,8 @@ export const UserProfile = () => {
                         <img src={avatarAvocado} alt="Avocado Avatar"/>
                         <p>Name: {user.name}</p>
                         <p>Mail: {user.email} </p>
+                        <p>Total Games: <span>{user.totalGames}</span></p>
+                        <p>Points Scored: <span>{user.pointsScored}</span></p>
                     </About>
                     <Button
                         onClick={logoutHandler}

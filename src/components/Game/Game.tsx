@@ -11,6 +11,8 @@ import {AppStatus} from '../../models/Enums';
 import {Spinner} from '../UI/Spinner';
 import {ProgressBar} from './ProgressBar';
 import {useHistory} from 'react-router-dom';
+import {UpdateUserTotalScore} from '../User/UpdateUserTotalScore';
+import {changeStatus} from '../../redux/appSlice';
 
 interface IProps {
     isChosen: boolean;
@@ -56,15 +58,30 @@ const Result = styled.div`
 
 export const Game = () => {
     const dispatch = useAppDispatch();
-    const {game, app} = useAppSelector(state => state);
+    const {game, app, user} = useAppSelector(state => state);
     const questionRandomIds: Array<number> = [];
     const [correctAnswer, setCorrectAnswer] = useState<number | null>(null);
     const questions: Array<Question> = useFetchQuestions();
-    const history = useHistory()
+    const history = useHistory();
+
+    useEffect(() => {
+        updateUserTotalScore()
+    }, [game.score, game.currentQuestion]);
 
     useEffect(() => {
         dispatch(startGame({questionRandomIds, questions}))
     }, [questions]);
+
+    const updateUserTotalScore = async () => {
+
+        if (game.currentQuestion === 5 && user.id.length > 2) {
+            dispatch(changeStatus(AppStatus.Loading));
+            const updatedTotalUserPoints = game.score + user.pointsScored;
+            const updatedTotalGames = user.totalGames + 1;
+            await UpdateUserTotalScore(user.id, updatedTotalGames, updatedTotalUserPoints);
+            dispatch(changeStatus(AppStatus.Idle));
+        }
+    }
 
     const answeredQuestionHandler = (id: number): void => {
         dispatch(setChosenAnswer(id))
@@ -103,7 +120,7 @@ export const Game = () => {
                         (<h2>Awesome!</h2>) :
                         (<h2>Dont Give Up!</h2>)
                     }
-                    <Button value='Next Game' size='1.5rem' onClick={() =>history.push('/game')}/>
+                    <Button value='Next Game' size='1.5rem' onClick={() => history.push('/game')}/>
                 </Result>
             )
         }
@@ -116,8 +133,7 @@ export const Game = () => {
             dispatch(updateScore());
         }
         setCorrectAnswer(game.questions[currentQuestion].correctAnswer);
-
-        const nextQuestion = () => {
+        const nextQuestion = async () => {
             dispatch(updateCurrentQuestion());
             setCorrectAnswer(null);
         }

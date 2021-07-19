@@ -22,8 +22,8 @@ const Element = styled.div`
     text-align: center;
     font-size: 2.4rem;
   }
-  
-  :hover{
+
+  :hover {
     transform: scale(1.05);
   }
 
@@ -37,17 +37,19 @@ const Element = styled.div`
 }
 `
 
+
 export const Home = () => {
     const history = useHistory();
 
     return (
         <Wrapper>
+
             <Element onClick={() => history.push('/game')}>
                 <h1>Play</h1>
             </Element>
 
-            <Element onClick={() => history.push('/login')}>
-                <h1>Sign In</h1>
+            <Element onClick={() => history.push('/user')}>
+                <h1>Profile</h1>
             </Element>
         </Wrapper>
     )

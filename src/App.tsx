@@ -67,6 +67,8 @@ function App() {
         name: '',
         email: '',
         isAuth: false,
+        pointsScored: 0,
+        totalGames: 0
     });
 
     useEffect(() => {
@@ -87,6 +89,8 @@ function App() {
                         email: response.email,
                         name: response.name,
                         isAuth: true,
+                        pointsScored: response.pointsScored,
+                        totalGames: response.totalGames,
                     });
                 }
             }
@@ -95,7 +99,7 @@ function App() {
 
     return (
         <>
-            <GlobalStyles isMenuOpen={app.isMenuOpen!} />
+            <GlobalStyles isMenuOpen={app.isMenuOpen!}/>
             <Router>
                 <Menu/>
                 <Switch>
