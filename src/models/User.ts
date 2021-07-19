@@ -3,6 +3,8 @@ export interface IUser {
     email: string,
     name: string,
     isAuth?: boolean,
+    totalGames: number,
+    pointsScored: number,
 };
 
 export interface INewUser extends IUser {

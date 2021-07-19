@@ -25,7 +25,7 @@ const H1 = styled.h1`
 
 const schema = yup.object().shape({
     email: yup.string().email().required('Email is Required'),
-    password: yup.string().min(5, 'Password should be at least 3 characters').max(15),
+    password: yup.string().min(5, 'Password should be at least 5 characters').max(15),
     confirmPassword: yup.string().oneOf([yup.ref('password'), null]),
     name: yup.string().min(3,'Name should be at least 3 characters').max(12, 'Too long').required('Name is Required'),
 })
@@ -43,7 +43,9 @@ export const Register = (): JSX.Element => {
         email: '',
         password: '',
         confirmPassword: '',
-        name: ''
+        name: '',
+        totalGames: 0,
+        pointsScored: 0
     });
     const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -78,7 +80,9 @@ export const Register = (): JSX.Element => {
                 email: '',
                 password: '',
                 confirmPassword: '',
-                name: ''
+                name: '',
+                totalGames: 0,
+                pointsScored: 0,
             })
         };
 

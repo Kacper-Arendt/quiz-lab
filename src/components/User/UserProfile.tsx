@@ -89,6 +89,8 @@ export const UserProfile = () => {
                         <img src={avatarAvocado} alt="Avocado Avatar"/>
                         <p>Name: {user.name}</p>
                         <p>Mail: {user.email} </p>
+                        <p>Total Games: {user.totalGames || '0'}</p>
+                        <p>Points Scored: {user.pointsScored || '0'} </p>
                     </About>
                     <Button
                         onClick={logoutHandler}
