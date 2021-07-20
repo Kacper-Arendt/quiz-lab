@@ -1,4 +1,4 @@
-import { AppStatus } from "./Enums";
+import { AppStatus } from "./Models";
 
 export interface IApp {
     status: AppStatus,

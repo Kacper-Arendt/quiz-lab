@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {IGame} from "../../models/Game";
+import {IGame} from "../../models/Models";
 
 const initialState = {} as IGame;
 

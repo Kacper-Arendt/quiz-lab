@@ -4,11 +4,11 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import {AppStatus} from '../../models/Enums';
 import {changeStatus} from '../../redux/appSlice';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {generateQuestionDocument} from '../firebase';
 import {Button, Form, Input, Spinner, Error} from '../UI/UIComponents';
+import {AppStatus} from '../../models/Models';
 
 const Answers = styled.div`
   text-align: center;

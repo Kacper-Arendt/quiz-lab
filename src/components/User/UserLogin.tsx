@@ -3,14 +3,13 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import {IUser} from '../../models/User';
 import {auth, getUserDocument} from '../firebase';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {login} from '../../redux/user/userSlice';
 import {RedirectIfUserIsAuth} from './Helpers';
 import {changeStatus} from '../../redux/appSlice';
-import {AppStatus} from '../../models/Enums';
 import {LinkEl as Link, Spinner, Form, Input, Button, Error} from '../UI/UIComponents';
+import {AppStatus, IUser} from '../../models/Models';
 
 const schema = yup.object().shape({
     email: yup.string().email().required('Email is required'),

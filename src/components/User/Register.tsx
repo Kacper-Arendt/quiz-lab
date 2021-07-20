@@ -6,12 +6,11 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import {INewUser} from '../../models/User';
 import {RedirectIfUserIsAuth} from './Helpers';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {changeStatus} from '../../redux/appSlice';
-import {AppStatus} from '../../models/Enums';
 import {Error, LinkEl as Link, Spinner, Input, Form, Button} from '../UI/UIComponents';
+import {AppStatus, INewUser} from '../../models/Models';
 
 const H1 = styled.h1`
   margin-bottom: 1rem;

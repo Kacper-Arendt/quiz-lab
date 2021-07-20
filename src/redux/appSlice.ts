@@ -1,7 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import {IApp} from "../models/app";
-import {AppStatus} from '../models/Enums';
+import {IApp, AppStatus} from "../models/Models";
 
 const initialState = {status: AppStatus.Idle, isMenuOpen: false} as IApp;
 

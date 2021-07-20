@@ -1,8 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import {Firebase as FirebaseEnum} from '../models/Enums'
-import {IUser} from "../models/User";
+
+import {Firebase as FirebaseEnum, IUser} from '../models/Models';
 
 const firebaseConfig = {
     apiKey: "AIzaSyA5a5WuH6_DH2-7ZVYDh8twPp-LH4KwK5g",

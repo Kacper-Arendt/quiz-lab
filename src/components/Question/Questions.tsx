@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
-import {Firebase} from '../../models/Enums';
 import {getDocuments} from '../firebase';
-import {Question as questionModel} from '../../models/Game';
 import {Spinner, Wrapper} from '../UI/UIComponents';
-
+import {Firebase, Question as questionModel} from '../../models/Models';
 
 const QuestionsEl = styled.div`
   width: 75vw;

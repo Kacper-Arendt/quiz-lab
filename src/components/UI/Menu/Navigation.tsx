@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import {device} from '../../../models/MediaQueries';
 import {Link} from 'react-router-dom'
 import {FaHome, FaPlayCircle, FaQuestionCircle, FaUserCircle, FaPowerOff, FaUserPlus} from 'react-icons/fa';
+
 import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
 import {toggleMenu} from '../../../redux/appSlice';
 import {logout} from '../../../redux/user/userSlice';
-import { auth } from '../../firebase';
+import {auth} from '../../firebase';
+import {device} from '../../../models/Models';
 
 interface IProps {
     isOpen: boolean,
@@ -82,7 +83,7 @@ export const Navigation = () => {
             {user.id.length > 3 ?
                 <StyledLink to='/home' onClick={logoutHandler}><p>Logout</p><FaPowerOff/></StyledLink>
                 :
-                <StyledLink to='/login' onClick={toggleMenuHandler}>Login <p><FaUserPlus /></p></StyledLink>
+                <StyledLink to='/login' onClick={toggleMenuHandler}>Login <p><FaUserPlus/></p></StyledLink>
             }
         </Nav>
 
