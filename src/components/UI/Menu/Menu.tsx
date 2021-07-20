@@ -9,16 +9,10 @@ export const Menu = () => {
     const {app} = useAppSelector(state => state);
     const dispatch = useAppDispatch();
 
-    const logoutHandler = () => {
-        dispatch(logout())
-        dispatch(toggleMenu())
-    }
-
     return (
         <div>
             <BurgerEl isOpen={app.isMenuOpen!} setIsOpen={() => dispatch(toggleMenu())}/>
-            <Navigation isOpen={app.isMenuOpen!} setIsOpen={() => dispatch(toggleMenu())}
-                        logout={logoutHandler}/>
+            <Navigation />
         </div>
     )
 };
