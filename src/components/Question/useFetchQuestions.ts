@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 
-import {AppStatus, Firebase} from '../../models/Enums';
-import {Question} from '../../models/Game';
+import {AppStatus, Firebase, Question} from '../../models/Models';
 import {changeStatus} from '../../redux/appSlice';
 import {useAppDispatch} from '../../redux/hooks';
 import {getDocuments} from '../firebase';

@@ -2,9 +2,7 @@ import {HashRouter as Router, Switch, Route} from "react-router-dom";
 import React, {useEffect, useState} from 'react';
 import {createGlobalStyle} from 'styled-components'
 
-import {Register} from './components/User/Register';
-import {UserLogin} from './components/User/UserLogin';
-import {UserProfile} from './components/User/UserProfile';
+import {Register, UserLogin, UserProfile} from './components/User/UserComponets';
 import {useAppDispatch, useAppSelector} from './redux/hooks';
 import {auth, getUserDocument} from "./components/firebase";
 import {login} from "./redux/user/userSlice";

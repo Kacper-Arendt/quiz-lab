@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import {auth, getUserDocument} from '../firebase';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {login} from '../../redux/user/userSlice';
-import {RedirectIfUserIsAuth} from './Helpers';
+import {RedirectIfUserIsAuth} from './UserComponets';
 import {changeStatus} from '../../redux/appSlice';
 import {LinkEl as Link, Spinner, Form, Input, Button, Error} from '../UI/UIComponents';
 import {AppStatus, IUser} from '../../models/Models';

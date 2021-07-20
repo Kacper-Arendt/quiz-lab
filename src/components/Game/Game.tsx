@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import {useHistory} from 'react-router-dom';
 
 import {setChosenAnswer, startGame, updateCurrentQuestion, updateScore} from '../../redux/game/gameSlice';
+import {Button, Form, Spinner,} from '../UI/UIComponents';
+import {AppStatus, Answer, Question} from '../../models/Models';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {useFetchQuestions} from '../Question/useFetchQuestions';
 import {ProgressBar} from './ProgressBar';
-import {UpdateUserTotalScore} from '../User/UpdateUserTotalScore';
+import {UpdateUserTotalScore} from '../User/UserComponets';
 import {changeStatus} from '../../redux/appSlice';
-import {Button, Form, Spinner,} from '../UI/UIComponents';
-import {AppStatus, Answer, Question} from '../../models/Models';
 
 interface IProps {
     isChosen: boolean;
