@@ -1,7 +1,6 @@
 import React from 'react';
 import {toggleMenu} from '../../../redux/appSlice';
 import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
-import {logout} from '../../../redux/user/userSlice';
 import {BurgerEl} from './Burger';
 import {Navigation} from './Navigation';
 

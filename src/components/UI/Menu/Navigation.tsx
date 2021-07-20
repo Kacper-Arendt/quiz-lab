@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import {device} from '../../../models/MediaQueries';
 import {Link} from 'react-router-dom'
-import {FaHome, FaPlayCircle, FaQuestionCircle, FaUserCircle, FaPowerOff} from 'react-icons/fa';
+import {FaHome, FaPlayCircle, FaQuestionCircle, FaUserCircle, FaPowerOff, FaUserPlus} from 'react-icons/fa';
 import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
 import {toggleMenu} from '../../../redux/appSlice';
 import {logout} from '../../../redux/user/userSlice';
+import { auth } from '../../firebase';
 
 interface IProps {
     isOpen: boolean,
@@ -66,7 +67,8 @@ export const Navigation = () => {
         dispatch(toggleMenu());
     }
 
-    const logoutHandler = () => {
+    const logoutHandler = async () => {
+        await auth.signOut();
         dispatch(logout())
         dispatch(toggleMenu())
     }
@@ -77,7 +79,11 @@ export const Navigation = () => {
             <StyledLink to='/game' onClick={toggleMenuHandler}><p>Game</p><FaPlayCircle/></StyledLink>
             <StyledLink to='/user' onClick={toggleMenuHandler}><p>Profile</p><FaUserCircle/></StyledLink>
             <StyledLink to='/questions' onClick={toggleMenuHandler}><p>Questions</p><FaQuestionCircle/></StyledLink>
-            <StyledLink to='/home' onClick={logoutHandler}><p>Logout</p><FaPowerOff/></StyledLink>
+            {user.id.length > 3 ?
+                <StyledLink to='/home' onClick={logoutHandler}><p>Logout</p><FaPowerOff/></StyledLink>
+                :
+                <StyledLink to='/login' onClick={toggleMenuHandler}>Login <p><FaUserPlus /></p></StyledLink>
+            }
         </Nav>
 
     )
