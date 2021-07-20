@@ -5,18 +5,12 @@ import * as yup from 'yup';
 
 import {IUser} from '../../models/User';
 import {auth, getUserDocument} from '../firebase';
-import {Button} from '../UI/Button';
-import {Input} from '../UI/Input';
-import {Form} from '../UI/Form';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {login} from '../../redux/user/userSlice';
 import {RedirectIfUserIsAuth} from './Helpers';
-import {Spinner} from '../UI/Spinner';
 import {changeStatus} from '../../redux/appSlice';
 import {AppStatus} from '../../models/Enums';
-import {LinkEl as Link} from '../UI/Link'
-import {Error} from '../UI/ErrorMesage';
-
+import {LinkEl as Link, Spinner, Form, Input, Button, Error} from '../UI/UIComponents';
 
 const schema = yup.object().shape({
     email: yup.string().email().required('Email is required'),

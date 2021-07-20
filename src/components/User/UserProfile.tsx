@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
-import {Button} from '../UI/Button';
 import {logout} from '../../redux/user/userSlice';
 import {useHistory} from 'react-router';
 import {auth} from '../firebase';
 import avatarAvocado from '.././../images/avatarAvocado.svg'
 import {device} from '../../models/MediaQueries';
+import {Button} from '../UI/UIComponents';
 
 const Profile = styled.div`
   height: 100vh;

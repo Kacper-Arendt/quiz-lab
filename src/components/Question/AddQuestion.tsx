@@ -8,11 +8,7 @@ import {AppStatus} from '../../models/Enums';
 import {changeStatus} from '../../redux/appSlice';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {generateQuestionDocument} from '../firebase';
-import {Button} from '../UI/Button';
-import {Form} from '../UI/Form';
-import {Input} from '../UI/Input';
-import {Spinner} from '../UI/Spinner';
-import {Error} from '../UI/ErrorMesage';
+import {Button, Form, Input, Spinner, Error} from '../UI/UIComponents';
 
 const Answers = styled.div`
   text-align: center;

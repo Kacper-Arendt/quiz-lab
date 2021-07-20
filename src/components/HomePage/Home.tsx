@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import {useHistory} from 'react-router';
 
-import {Wrapper} from '../UI/Wrapper';
 import {device} from '../../models/MediaQueries';
+import {Wrapper} from '../UI/UIComponents';
 
 const Element = styled.div`
   display: flex;
