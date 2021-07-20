@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import {device} from '../../../models/MediaQueries';
 import {MenuIProps} from './Burger';
-import {Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import {FaUserAlt, FaHome, FaRegPlayCircle, FaQuestionCircle, FaUserCircle} from 'react-icons/fa';
 
 export const Nav = styled.nav<MenuIProps>`
   display: flex;
@@ -35,6 +36,11 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   text-transform: uppercase;
   transition: color 0.2s linear;
+  display: flex;
+
+  p {
+    margin-right: .8rem;
+  }
 
   &:hover {
     color: white;
@@ -44,10 +50,10 @@ export const Navigation = (props: MenuIProps) => {
 
     return (
         <Nav isOpen={props.isOpen}>
-            <StyledLink to='/game' onClick={props.setIsOpen}>Game</StyledLink>
-            <StyledLink to='/user' onClick={props.setIsOpen}>Profile</StyledLink>
-            <StyledLink to='/questions' onClick={props.setIsOpen}>questions</StyledLink>
-            <StyledLink to='/' onClick={props.setIsOpen}>Home</StyledLink>
+            <StyledLink to='/' onClick={props.setIsOpen}><p>Home</p> <FaHome/></StyledLink>
+            <StyledLink to='/game' onClick={props.setIsOpen}><p>Game</p><FaRegPlayCircle/></StyledLink>
+            <StyledLink to='/user' onClick={props.setIsOpen}><p>Profile</p><FaUserCircle/></StyledLink>
+            <StyledLink to='/questions' onClick={props.setIsOpen}><p>Questions</p><FaQuestionCircle/></StyledLink>
         </Nav>
     )
 }
