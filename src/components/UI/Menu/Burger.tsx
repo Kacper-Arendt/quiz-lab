@@ -76,6 +76,7 @@ export const Burger = styled.button<MenuIProps>`
 export interface MenuIProps {
     isOpen: boolean,
     setIsOpen?: () => void,
+    logout?: () => any,
 }
 
 export const BurgerEl = (props: MenuIProps) => {
