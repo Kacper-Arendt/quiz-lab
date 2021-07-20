@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {device} from '../../../models/MediaQueries';
+import {device} from '../../../models/Models';
 
 export const Burger = styled.button<MenuIProps>`
   position: fixed;

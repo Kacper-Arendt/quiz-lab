@@ -2,20 +2,17 @@ import {HashRouter as Router, Switch, Route} from "react-router-dom";
 import React, {useEffect, useState} from 'react';
 import {createGlobalStyle} from 'styled-components'
 
-import {Register} from './components/User/Register';
-import {UserLogin} from './components/User/UserLogin';
-import {UserProfile} from './components/User/UserProfile';
+import {Register, UserLogin, UserProfile} from './components/User/UserComponets';
 import {useAppDispatch, useAppSelector} from './redux/hooks';
 import {auth, getUserDocument} from "./components/firebase";
 import {login} from "./redux/user/userSlice";
-import {IUser} from "./models/User";
 import {Game} from "./components/Game/Game";
 import {AddQuestion} from "./components/Question/AddQuestion";
 import {Questions} from "./components/Question/Questions";
 import {Home} from "./components/HomePage/Home";
 import background from './images/question-mark-background.jpg'
-import {device} from './models/MediaQueries';
 import {Menu} from "./components/UI/Menu/Menu";
+import {IUser, device} from './models/Models';
 
 interface Iprops {
     isMenuOpen: boolean,

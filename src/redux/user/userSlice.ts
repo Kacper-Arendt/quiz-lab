@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {IUser} from "../../models/User";
+import {IUser} from "../../models/Models";
 
 const initialState = {id: '', name: '', email: '', totalGames: 0, pointsScored: 0} as IUser;
 

@@ -1,35 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
-import {IUser} from '../../models/User';
 import {auth, getUserDocument} from '../firebase';
-import {Button} from '../UI/Button';
-import {Input} from '../UI/Input';
-import {Form} from '../UI/Form';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {login} from '../../redux/user/userSlice';
-import {RedirectIfUserIsAuth} from './Helpers';
-import {Spinner} from '../UI/Spinner';
+import {RedirectIfUserIsAuth} from './UserComponets';
 import {changeStatus} from '../../redux/appSlice';
-import {AppStatus} from '../../models/Enums';
-import {LinkEl as Link} from '../UI/Link'
-import {Error} from '../UI/ErrorMesage';
-
-
-const schema = yup.object().shape({
-    email: yup.string().email().required('Email is required'),
-    password: yup.string().required('Password is required'),
-});
+import {LinkEl as Link, Spinner, Form, Input, Button, Error} from '../UI/UIComponents';
+import {AppStatus, IUser} from '../../models/Models';
 
 export const UserLogin = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const {app} = useAppSelector(state => state);
-    const {register, handleSubmit, formState: {errors}} = useForm({
-        resolver: yupResolver(schema),
-        mode: "onBlur",
-    });
     const [formData, setFormData] = useState({email: '', password: ''});
     const [error, setError] = useState('');
     const [fetchedUser, setFetchedUser] = useState({
@@ -51,7 +32,8 @@ export const UserLogin = (): JSX.Element => {
     };
 
     const signInWithEmailAndPasswordHandler = async (e: React.SyntheticEvent) => {
-        try {
+        e.preventDefault();
+            try {
             dispatch(changeStatus(AppStatus.Loading))
             const userLogin = await auth.signInWithEmailAndPassword(formData.email, formData.password);
             if (userLogin.user) {
@@ -80,7 +62,7 @@ export const UserLogin = (): JSX.Element => {
     return (
         <>
             {RedirectIfUserIsAuth('/user')}
-            <Form onSubmitHandler={handleSubmit(signInWithEmailAndPasswordHandler)}>
+            <Form onSubmitHandler={signInWithEmailAndPasswordHandler}>
                 <h1>Login</h1>
                 <Error value={error && error}/>
                 <Input
@@ -89,19 +71,15 @@ export const UserLogin = (): JSX.Element => {
                     value={formData.email}
                     autoComplete="new-password"
                     placeholder='Email'
-                    register={{...register('email', {required: true})}}
                     onChange={updateField}
                 />
-                {errors.email && <Error value={errors.email.message}/>}
                 <Input
                     type='password'
                     name='password'
                     value={formData.password}
                     placeholder='Password'
-                    register={{...register('password', {required: true})}}
                     onChange={updateField}
                 />
-                {errors.password && <Error value={errors.password.message}/>}
                 {app.status === AppStatus.Loading ?
                     <Spinner/>
                     :

@@ -1,10 +1,18 @@
 import styled from 'styled-components';
-import {device} from '../../../models/MediaQueries';
-import {MenuIProps} from './Burger';
 import {Link} from 'react-router-dom'
-import {FaHome, FaPlayCircle, FaQuestionCircle, FaUserCircle, FaPowerOff} from 'react-icons/fa';
+import {FaHome, FaPlayCircle, FaQuestionCircle, FaUserCircle, FaPowerOff, FaUserPlus} from 'react-icons/fa';
 
-export const Nav = styled.nav<MenuIProps>`
+import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
+import {toggleMenu} from '../../../redux/appSlice';
+import {logout} from '../../../redux/user/userSlice';
+import {auth} from '../../firebase';
+import {device} from '../../../models/Models';
+
+interface IProps {
+    isOpen: boolean,
+}
+
+export const Nav = styled.nav<IProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,7 +26,7 @@ export const Nav = styled.nav<MenuIProps>`
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;
-  transform: ${(props: MenuIProps) => props.isOpen ? 'translateX(0)' : 'translateX(-100%)'};
+  transform: ${(props: IProps) => props.isOpen ? 'translateX(0)' : 'translateX(-100%)'};
   font-size: 2rem;
 
 @media${device.tablet} {
@@ -52,14 +60,31 @@ const StyledLink = styled(Link)`
     color: white;
   }`
 
-export const Navigation = (props: MenuIProps) => {
+export const Navigation = () => {
+    const dispatch = useAppDispatch();
+    const {user, app} = useAppSelector(state => state);
+
+    const toggleMenuHandler = () => {
+        dispatch(toggleMenu());
+    }
+
+    const logoutHandler = async () => {
+        await auth.signOut();
+        dispatch(logout())
+        dispatch(toggleMenu())
+    }
+
     return (
-        <Nav isOpen={props.isOpen}>
-            <StyledLink to='/' onClick={props.setIsOpen}><p>Home</p> <FaHome/></StyledLink>
-            <StyledLink to='/game' onClick={props.setIsOpen}><p>Game</p><FaPlayCircle/></StyledLink>
-            <StyledLink to='/user' onClick={props.setIsOpen}><p>Profile</p><FaUserCircle/></StyledLink>
-            <StyledLink to='/questions' onClick={props.setIsOpen}><p>Questions</p><FaQuestionCircle/></StyledLink>
-            <StyledLink to='/home' onClick={props.logout}><p>Logout</p><FaPowerOff/></StyledLink>
+        <Nav isOpen={app.isMenuOpen!}>
+            <StyledLink to='/' onClick={toggleMenuHandler}><p>Home</p> <FaHome/></StyledLink>
+            <StyledLink to='/game' onClick={toggleMenuHandler}><p>Game</p><FaPlayCircle/></StyledLink>
+            <StyledLink to='/user' onClick={toggleMenuHandler}><p>Profile</p><FaUserCircle/></StyledLink>
+            <StyledLink to='/questions' onClick={toggleMenuHandler}><p>Questions</p><FaQuestionCircle/></StyledLink>
+            {user.id.length > 3 ?
+                <StyledLink to='/home' onClick={logoutHandler}><p>Logout</p><FaPowerOff/></StyledLink>
+                :
+                <StyledLink to='/login' onClick={toggleMenuHandler}>Login <p><FaUserPlus/></p></StyledLink>
+            }
         </Nav>
 
     )
