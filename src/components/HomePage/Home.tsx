@@ -50,6 +50,8 @@ const Element = styled.div`
 
   :hover {
     transform: scale(1.05);
+    -webkit-box-shadow: 0px 0px 10px 0px #000;
+    box-shadow: 0px 0px 10px 0px #000;
   }
 
   :active, :focus {
