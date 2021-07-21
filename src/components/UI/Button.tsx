@@ -19,11 +19,22 @@ const ButtonEl = styled.button<IProps>`
   background-color: ${(props) => props.backgroundColor ? props.backgroundColor : 'green'};
   letter-spacing: 1.2px;
   font-weight: bold;
-  
-  
-  :disabled{
+  transition: all .3s;
+
+  :hover {
+    transform: scale(1.05);
+    -webkit-box-shadow: 0px 0px 10px 0px #000;
+    box-shadow: 0px 0px 10px 0px #000;
+  }
+
+  :active {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    transform: scale(1);
+  }
+
+  :disabled {
     background-color: grey;
-    
   }
 `
 

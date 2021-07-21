@@ -5,10 +5,14 @@ import {useHistory} from 'react-router';
 import {Wrapper} from '../UI/UIComponents';
 import {device} from '../../models/Models';
 
-const MoveFromLeft = keyframes`
+export const MoveFromLeft = keyframes`
   0% {
     opacity: 0;
     transform: translateX(-15rem);
+    -webkit-filter: blur(0px);
+  }
+  50% {
+    -webkit-filter: blur(2px);
   }
   80% {
     transform: translateX(1rem);
@@ -16,6 +20,7 @@ const MoveFromLeft = keyframes`
   100% {
     opacity: 1;
     transform: translateX(0);
+    -webkit-filter: blur(0px);
   }
 `
 const Element = styled.div`
