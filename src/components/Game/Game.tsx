@@ -38,6 +38,18 @@ const P = styled.p<IProps>`
   border: ${(props) => props.correctAnswer ? '3px solid #37A63E' : '2px solid orange'};
   font-weight: bold;
   color: white;
+  transition: all 0.3s;
+  
+  :hover{
+    -webkit-box-shadow: 0px 0px 10px 0px #000;
+    box-shadow: 0px 0px 10px 0px #000;
+    transform: scale(1.03);
+  }
+  :active{
+    transform: scale(1);
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
 `
 
 const Result = styled.div`

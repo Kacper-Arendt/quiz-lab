@@ -1,6 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import {device} from '../../../models/Models';
+
+const rotate = keyframes`
+  0% {
+    transform: translateX(-20rem) rotate(-720deg);
+  }
+
+  to {
+    transform: translateX(0) rotate(0deg);
+  }
+`
 
 export const Burger = styled.button<MenuIProps>`
   position: fixed;
@@ -16,6 +26,8 @@ export const Burger = styled.button<MenuIProps>`
   cursor: pointer;
   padding: 0;
   z-index: 101;
+  animation-name: ${rotate};
+  animation-duration: .5s;
 
   &:focus {
     outline: none;
