@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/quiz-lab/static/js/main.f1fd5c47.chunk.js",
-    "main.js.map": "/quiz-lab/static/js/main.f1fd5c47.chunk.js.map",
+    "main.js": "/quiz-lab/static/js/main.e0d67ac4.chunk.js",
+    "main.js.map": "/quiz-lab/static/js/main.e0d67ac4.chunk.js.map",
     "runtime-main.js": "/quiz-lab/static/js/runtime-main.0ed3469b.js",
     "runtime-main.js.map": "/quiz-lab/static/js/runtime-main.0ed3469b.js.map",
-    "static/js/2.4f4a3cc8.chunk.js": "/quiz-lab/static/js/2.4f4a3cc8.chunk.js",
-    "static/js/2.4f4a3cc8.chunk.js.map": "/quiz-lab/static/js/2.4f4a3cc8.chunk.js.map",
+    "static/js/2.75c446a6.chunk.js": "/quiz-lab/static/js/2.75c446a6.chunk.js",
+    "static/js/2.75c446a6.chunk.js.map": "/quiz-lab/static/js/2.75c446a6.chunk.js.map",
     "index.html": "/quiz-lab/index.html",
-    "static/js/2.4f4a3cc8.chunk.js.LICENSE.txt": "/quiz-lab/static/js/2.4f4a3cc8.chunk.js.LICENSE.txt",
+    "static/js/2.75c446a6.chunk.js.LICENSE.txt": "/quiz-lab/static/js/2.75c446a6.chunk.js.LICENSE.txt",
     "static/media/avatarAvocado.b9e21133.svg": "/quiz-lab/static/media/avatarAvocado.b9e21133.svg",
     "static/media/question-mark-background.715c47a3.jpg": "/quiz-lab/static/media/question-mark-background.715c47a3.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.0ed3469b.js",
-    "static/js/2.4f4a3cc8.chunk.js",
-    "static/js/main.f1fd5c47.chunk.js"
+    "static/js/2.75c446a6.chunk.js",
+    "static/js/main.e0d67ac4.chunk.js"
   ]
 }
