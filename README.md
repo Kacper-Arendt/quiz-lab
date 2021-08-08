@@ -3,7 +3,7 @@ Quiz-Lab is a free and open-source quiz application that lets you test your fron
 
 Built with React, Redux, Typescript, and Styled Components.  
 
-The project runs on GH Pages => Click [here](https://kacykvaa.github.io/quiz-lab/)
+The project runs on GH Pages => Click [here](https://kacper-arendt.github.io/quiz-lab/)
 
 # Site access features:
 User doesn't need to be logged in to play.  
